@@ -6,6 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "intricate-devtools"
 version = "1.1.0"
 description = "Internal developer tooling for the Intricate Engine."
+readme = "README.md"
 authors = [
     { name = "Intricate Dev Team" }
 ]
