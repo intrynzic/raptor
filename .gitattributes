@@ -21,3 +21,9 @@
 *.mp4   binary
 *.mkv   binary
 *.ts    binary
+*.exe   binary
+*.dll   binary
+*.lib   binary
+*.so    binary
+*.dylib binary
+*.solib binary
