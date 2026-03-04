@@ -11,6 +11,7 @@ class RaptorCheck(Check):
     description = "Validates this installation of Intricate-Raptor."
 
     def validate(self) -> ValidationResult:
+        # TODO: This must ALL be reworked!
         root = repo_root()
         devtools_dir = str(tools_dir() / "DevTools").replace('\\', '/')
 
