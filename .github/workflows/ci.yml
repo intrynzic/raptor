@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: ["master", "main"]
+    paths:
+      - "**/*.py"
+  push:
+    branches: ["master", "main"]
+    paths:
+      - "**/*.py"
+
+permissions:
+  contents: write
+  statuses: write
+
+jobs:
+  python-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+          submodules: false
+
+      - name: Setup uv
+        run: |
+          chmod +x setup.sh
+          ./setup.sh
+
+      - name: Install deps
+        run: uv sync
+
+      - name: Lint
+        run: uv run run ruff check .
+
+      - name: Format check
+        run: uv run ruff format . --check
