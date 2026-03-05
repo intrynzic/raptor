@@ -8,5 +8,3 @@ else
     echo "Error: Neither curl nor wget is installed." >&2
     exit 1
 fi
-
-read -p "Press any key to continue . . ."
