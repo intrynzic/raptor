@@ -31,7 +31,7 @@ jobs:
         run: uv sync
 
       - name: Lint
-        run: uv run run ruff check .
+        run: uv run ruff check .
 
       - name: Format check
         run: uv run ruff format . --check
