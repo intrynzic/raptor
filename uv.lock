@@ -101,7 +101,7 @@ wheels = [
 ]
 
 [[package]]
-name = "intricate-devtools"
+name = "intricate-raptor"
 version = "1.1.0"
 source = { editable = "." }
 dependencies = [

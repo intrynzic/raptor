@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "intricate-devtools"
+name = "intricate-raptor"
 version = "1.1.0"
 description = "Internal developer tooling for the Intricate Engine."
 readme = "README.md"
@@ -20,4 +20,4 @@ dependencies = [
 ]
 
 [project.scripts]
-intricate = "devtools.cli:app"
+raptor = "raptor.cli:app"
