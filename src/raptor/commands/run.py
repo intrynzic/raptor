@@ -1,18 +1,21 @@
+from pathlib import Path
+
+import typer
+
 from raptor.config.loader import CONFIG
 from raptor.core.log import error
 from raptor.core.msbuild import build, build_and_run, run_project
-from pathlib import Path
-import typer
 
+app = typer.Typer(help="Build and run an executable project.")
 
-app = typer.Typer(help = "Build and run an executable project.")
 
 # Factory function for creating commands for each executable project
 def create_build_command(prj_name: str):
     def command(
-        cfg: str = typer.Option(CONFIG.workspace.default_config, "--config", "--cfg",
-                                         help = "The project configuration to run.", show_choices = True),
-        args: list[str] = typer.Argument(None, help = "Extra arguments to pass to the app.")
+        cfg: str = typer.Option(
+            CONFIG.workspace.default_config, "--config", "--cfg", help="The project configuration to run.", show_choices=True
+        ),
+        args: list[str] = typer.Argument(None, help="Extra arguments to pass to the app."),
     ):
         prj = CONFIG.workspace.executable_projects[prj_name]
 
@@ -24,7 +27,7 @@ def create_build_command(prj_name: str):
             error(f"Unknown project build_mode '{prj.build_mode}' for project '{prj_name}'!")
             return
 
-        prj_path = Path(prj.dir) / f"{prj_name}.{"vcxproj" if prj.language == "cpp" else "csproj" }"
+        prj_path = Path(prj.dir) / f"{prj_name}.{'vcxproj' if prj.language == 'cpp' else 'csproj'}"
         if prj.build_mode == "project":
             build_and_run(prj_path, cfg, prj.arch, args)
         else:
@@ -33,5 +36,6 @@ def create_build_command(prj_name: str):
 
     return command
 
+
 for prj_name in CONFIG.workspace.executable_projects.keys():
-    app.command(name = prj_name, help = f"Run {prj_name}.")(create_build_command(prj_name))
+    app.command(name=prj_name, help=f"Run {prj_name}.")(create_build_command(prj_name))

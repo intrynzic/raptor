@@ -1,6 +1,7 @@
-from raptor.core.validation import ValidationResult, Severity
 from abc import ABC, abstractmethod
 from typing import Optional
+
+from raptor.core.validation import Severity, ValidationResult
 
 
 class Check(ABC):
@@ -34,16 +35,16 @@ class Check(ABC):
             "name": self.name,
             "status": "pass" if result and result.valid else "fail",
             "severity": result.severity.name if result else None,
-            "message": result.message if result else None
+            "message": result.message if result else None,
         }
 
     def from_dict(self, check_dict: dict):
         self.type_id = check_dict["type_id"]
         self.name = check_dict["name"]
         self.last_result = ValidationResult(
-            valid = True if check_dict["status"] == "pass" else False,
-            severity = Severity[check_dict["severity"]],
-            message = check_dict["message"]
+            valid=True if check_dict["status"] == "pass" else False,
+            severity=Severity[check_dict["severity"]],
+            message=check_dict["message"],
         )
 
     @property

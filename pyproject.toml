@@ -21,3 +21,20 @@ dependencies = [
 
 [project.scripts]
 raptor = "raptor.cli:app"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.4",
+]
+
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

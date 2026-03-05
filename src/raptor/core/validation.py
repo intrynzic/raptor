@@ -9,6 +9,7 @@ class Severity(Enum):
     ERROR = "ERROR"
     CRITICAL = "CRITICAL"
 
+
 @dataclass
 class ValidationResult:
     valid: bool

@@ -1,9 +1,10 @@
-from raptor.config.loader import CONFIG
-from raptor.core.msbuild import rebuild
 import typer
 
+from raptor.config.loader import CONFIG
+from raptor.core.msbuild import rebuild
 
-app = typer.Typer(help = "Rebuild the project.")
+app = typer.Typer(help="Rebuild the project.")
+
 
 # Factory function for creating commands for each build-config
 def create_build_command(config_name: str):
@@ -12,5 +13,6 @@ def create_build_command(config_name: str):
 
     return command
 
+
 for cfg in CONFIG.workspace.configs:
-    app.command(name = cfg, help = f"Rebuild the project for the {cfg} configuration.")(create_build_command(cfg))
+    app.command(name=cfg, help=f"Rebuild the project for the {cfg} configuration.")(create_build_command(cfg))

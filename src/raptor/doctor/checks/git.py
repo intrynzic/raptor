@@ -1,6 +1,6 @@
+import raptor.setup.git as git
 from raptor.core.validation import ValidationResult
 from raptor.doctor.checks.check import Check
-import raptor.setup.git as git
 
 
 class GitCheck(Check):

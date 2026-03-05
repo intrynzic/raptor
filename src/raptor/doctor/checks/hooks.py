@@ -1,8 +1,9 @@
-from raptor.core.validation import ValidationResult
-from raptor.doctor.checks.check import Check
 import raptor.hooks.post_checkout as hook_pc
 import raptor.hooks.post_merge as hook_pm
 import raptor.hooks.post_rewrite as hook_pr
+
+from raptor.core.validation import ValidationResult
+from raptor.doctor.checks.check import Check
 
 
 class PostCheckoutHookCheck(Check):
@@ -17,6 +18,7 @@ class PostCheckoutHookCheck(Check):
         hook_pc.install()
         return True
 
+
 class PostMergeHookCheck(Check):
     type_id = "PostMergeHookCheck"
     name = "Git post-merge hook"
@@ -28,6 +30,7 @@ class PostMergeHookCheck(Check):
     def fix(self) -> bool:
         hook_pm.install()
         return True
+
 
 class PostRewriteHookCheck(Check):
     type_id = "PostRewriteHookCheck"

@@ -1,29 +1,37 @@
-from raptor.core.validation import ValidationResult, Severity
 import sys
+from datetime import datetime
+
 import typer
 import typer.colors
-from datetime import datetime
+
+from raptor.core.validation import Severity, ValidationResult
 
 
 def trace(msg: str):
-    _log("[TRACE]:", msg, fg = typer.colors.BRIGHT_BLACK)
+    _log("[TRACE]:", msg, fg=typer.colors.BRIGHT_BLACK)
+
 
 def info(msg: str):
-    _log("[INFO]:", msg, fg = typer.colors.CYAN)
+    _log("[INFO]:", msg, fg=typer.colors.CYAN)
+
 
 def command(cmd: str):
-    _log(">", cmd, fg = typer.colors.BRIGHT_CYAN)
+    _log(">", cmd, fg=typer.colors.BRIGHT_CYAN)
+
 
 def warn(msg: str):
-    _log("[WARN]:", msg, fg = typer.colors.YELLOW)
+    _log("[WARN]:", msg, fg=typer.colors.YELLOW)
+
 
 def error(msg: str, e: Exception | None = None):
-    _log("[ERROR]:", f"{msg}{'\n' + str(e) if e else ''}", fg = typer.colors.RED, err = True)
+    _log("[ERROR]:", f"{msg}{'\n' + str(e) if e else ''}", fg=typer.colors.RED, err=True)
+
 
 def critical(msg: str, e: Exception | None = None):
-    _log("[CRITICAL]:", f"{msg}{'\n' + str(e) if e else ''}", fg = typer.colors.BRIGHT_WHITE, bg = typer.colors.RED, err = True)
+    _log("[CRITICAL]:", f"{msg}{'\n' + str(e) if e else ''}", fg=typer.colors.BRIGHT_WHITE, bg=typer.colors.RED, err=True)
     typer.Exit(1)
     sys.exit(1)
+
 
 def log_validation_result(vres: ValidationResult):
     if vres.message is None:
@@ -41,7 +49,8 @@ def log_validation_result(vres: ValidationResult):
         case _:
             trace(vres.message)
 
+
 def _log(prefix: str, message: str, fg: int | str | None = None, bg: int | str | None = None, err: bool = False):
     timestamp = datetime.now().strftime("%H:%M:%S")
     formatted = f"[{timestamp}] {prefix} {message}"
-    typer.secho(formatted, fg = fg, bg = bg, err = err)
+    typer.secho(formatted, fg=fg, bg=bg, err=err)

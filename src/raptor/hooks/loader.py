@@ -1,6 +1,7 @@
+import importlib.util
+
 from raptor.core.fs import hooks_dir
 from raptor.core.log import error
-import importlib.util
 
 
 def load_hooks():
