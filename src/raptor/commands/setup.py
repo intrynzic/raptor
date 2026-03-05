@@ -1,8 +1,8 @@
+import typer
+
 from raptor.config.loader import CONFIG
 from raptor.core.log import info
 from raptor.setup import dotnet, doxygen, git, hooks, vulkan
-import typer
-
 
 app = typer.Typer(help = "Setup the development environment and all project dependencies.")
 

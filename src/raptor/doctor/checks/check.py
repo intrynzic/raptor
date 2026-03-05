@@ -1,6 +1,7 @@
-from raptor.core.validation import ValidationResult, Severity
 from abc import ABC, abstractmethod
 from typing import Optional
+
+from raptor.core.validation import Severity, ValidationResult
 
 
 class Check(ABC):

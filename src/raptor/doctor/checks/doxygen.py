@@ -1,6 +1,6 @@
+import raptor.setup.doxygen as doxygen
 from raptor.core.validation import ValidationResult
 from raptor.doctor.checks.check import Check
-import raptor.setup.doxygen as doxygen
 
 
 class DoxygenCheck(Check):

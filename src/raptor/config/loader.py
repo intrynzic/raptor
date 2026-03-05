@@ -1,9 +1,11 @@
+import tomllib
+
+from packaging.version import parse as parse_ver
+
 from raptor.config.defines import CONFIG_FILE_NAME, CONFIG_FILE_VERSION
-from raptor.config.structs import RaptorConfigFile, RaptorConfig
+from raptor.config.structs import RaptorConfig, RaptorConfigFile
 from raptor.core.git import repo_root
 from raptor.core.log import critical, warn
-from packaging.version import parse as parse_ver
-import tomllib
 
 
 def load_config() -> RaptorConfig:

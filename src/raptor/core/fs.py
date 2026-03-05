@@ -1,9 +1,10 @@
-from raptor.config.loader import CONFIG
-from raptor.core.git import repo_root
-from raptor.core.process import run
 import os
 from functools import cache
 from pathlib import Path
+
+from raptor.config.loader import CONFIG
+from raptor.core.git import repo_root
+from raptor.core.process import run
 
 
 @cache

@@ -1,7 +1,7 @@
 from raptor.core.fs import tools_dir
 from raptor.core.git import repo_root
 from raptor.core.process import run
-from raptor.core.validation import ValidationResult, Severity
+from raptor.core.validation import Severity, ValidationResult
 from raptor.doctor.checks.check import Check
 
 

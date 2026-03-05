@@ -1,9 +1,11 @@
-from raptor.config.defines import CONFIG_FILE_NAME
-from raptor.core.log import critical
 from functools import cached_property
 from pathlib import Path
-from pydantic import BaseModel, Field
 from typing import Optional
+
+from pydantic import BaseModel, Field
+
+from raptor.config.defines import CONFIG_FILE_NAME
+from raptor.core.log import critical
 
 
 class PathsConfig(BaseModel):

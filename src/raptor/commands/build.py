@@ -1,7 +1,7 @@
-from raptor.config.loader import CONFIG
-from raptor.core.msbuild import build, clean
 import typer
 
+from raptor.config.loader import CONFIG
+from raptor.core.msbuild import build, clean
 
 app = typer.Typer(help = "Build the project.")
 

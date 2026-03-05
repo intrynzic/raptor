@@ -1,10 +1,10 @@
-from raptor.core.fs import vswhere_path, msbuild_path
-from raptor.core.process import run_ex
-from raptor.core.validation import ValidationResult, Severity
-from raptor.doctor.checks.check import Check
-from pathlib import Path
 import json
+from pathlib import Path
 
+from raptor.core.fs import msbuild_path, vswhere_path
+from raptor.core.process import run_ex
+from raptor.core.validation import Severity, ValidationResult
+from raptor.doctor.checks.check import Check
 
 _VS_REQUIRED_COMPONENTS: list[str] = [
     "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",

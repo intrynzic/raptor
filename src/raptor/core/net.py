@@ -1,8 +1,9 @@
 import os
-import requests
 import sys
 import time
 from pathlib import Path
+
+import requests
 
 
 def download_file(url: str, target_path: Path):

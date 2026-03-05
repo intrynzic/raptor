@@ -1,16 +1,16 @@
 from raptor.config.loader import CONFIG
 from raptor.core.log import error
 from raptor.doctor.checks.check import Check
+from raptor.doctor.checks.cpp23 import Cpp23Check
+from raptor.doctor.checks.dotnet import DotNetCheck
+from raptor.doctor.checks.doxygen import DoxygenCheck
 from raptor.doctor.checks.git import GitCheck
 from raptor.doctor.checks.git_hooks import GitHooksCheck
 from raptor.doctor.checks.raptor import RaptorCheck
-from raptor.doctor.checks.doxygen import DoxygenCheck
+from raptor.doctor.checks.visualstudio import VisualStudioCheck
 from raptor.doctor.checks.vulkan import VulkanCheck
 from raptor.doctor.checks.vulkan_driver import VulkanDriverCheck
-from raptor.doctor.checks.dotnet import DotNetCheck
-from raptor.doctor.checks.visualstudio import VisualStudioCheck
 from raptor.doctor.checks.windows import WindowsCheck
-from raptor.doctor.checks.cpp23 import Cpp23Check
 
 
 def get_checks() -> list[Check]:

@@ -1,6 +1,6 @@
+import raptor.setup.hooks as hooks
 from raptor.core.validation import ValidationResult
 from raptor.doctor.checks.check import Check
-import raptor.setup.hooks as hooks
 
 
 class GitHooksCheck(Check):

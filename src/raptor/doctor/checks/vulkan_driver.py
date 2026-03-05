@@ -1,8 +1,9 @@
+import re
+
 from raptor.core.log import info
 from raptor.core.process import run_ex
-from raptor.core.validation import ValidationResult, Severity
+from raptor.core.validation import Severity, ValidationResult
 from raptor.doctor.checks.check import Check
-import re
 
 
 class VulkanDriverCheck(Check):

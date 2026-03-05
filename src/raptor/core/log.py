@@ -1,8 +1,10 @@
-from raptor.core.validation import ValidationResult, Severity
 import sys
+from datetime import datetime
+
 import typer
 import typer.colors
-from datetime import datetime
+
+from raptor.core.validation import Severity, ValidationResult
 
 
 def trace(msg: str):

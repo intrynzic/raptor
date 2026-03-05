@@ -1,6 +1,7 @@
-from raptor.core.process import run
 from functools import cache
 from pathlib import Path
+
+from raptor.core.process import run
 
 
 @cache

@@ -1,14 +1,16 @@
-from raptor.config.loader import CONFIG
-from raptor.core.fs import tmp_dir, tools_dir
-from raptor.core.log import trace, info, warn, error, critical, log_validation_result
-from raptor.core.net import download_file
-from raptor.core.process import run
-from raptor.core.validation import ValidationResult, Severity
-from packaging.version import parse as parse_ver, Version
 from pathlib import Path
 from zipfile import ZipFile
-import typer
 
+import typer
+from packaging.version import Version
+from packaging.version import parse as parse_ver
+
+from raptor.config.loader import CONFIG
+from raptor.core.fs import tmp_dir, tools_dir
+from raptor.core.log import critical, error, info, log_validation_result, trace, warn
+from raptor.core.net import download_file
+from raptor.core.process import run
+from raptor.core.validation import Severity, ValidationResult
 
 _DOXYGEN_REQUIRED_VER: Version = Version(CONFIG.setup.get("doxygen").min_version)
 _DOXYGEN_DIR: Path = tools_dir() / "Doxygen"

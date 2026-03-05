@@ -1,13 +1,15 @@
-from raptor.config.loader import CONFIG
-from raptor.core.git import hooks_dir as git_hooks_dir
-from raptor.core.log import trace, info, error, log_validation_result
-from raptor.core.validation import ValidationResult, Severity
-from raptor.hooks.registry import HOOK_REGISTRY
-from packaging.version import parse as parse_ver, Version
-from pathlib import Path
 import hashlib
 import os
+from pathlib import Path
 
+from packaging.version import Version
+from packaging.version import parse as parse_ver
+
+from raptor.config.loader import CONFIG
+from raptor.core.git import hooks_dir as git_hooks_dir
+from raptor.core.log import error, info, log_validation_result, trace
+from raptor.core.validation import Severity, ValidationResult
+from raptor.hooks.registry import HOOK_REGISTRY
 
 _HOOK_VER: Version = Version("1.1.0")
 _HOOK_REQUIRED_VER: Version = Version(CONFIG.setup.get("git-hooks").min_version)
@@ -71,7 +73,7 @@ def ensure():
     # Revalidate after install
     post = validate()
     if not post.valid:
-        error(f"Git hook installation failed!")
+        error("Git hook installation failed!")
         log_validation_result(post)
 
         return

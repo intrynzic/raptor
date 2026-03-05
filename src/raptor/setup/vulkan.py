@@ -1,16 +1,18 @@
+import os
+from pathlib import Path
+
+import typer
+from packaging.version import Version
+from packaging.version import parse as parse_ver
+
 from raptor.config.loader import CONFIG
 from raptor.core.environ import get_system_env_var
 from raptor.core.fs import tmp_dir
 from raptor.core.git import repo_root
-from raptor.core.log import trace, info, warn, error, critical, log_validation_result
+from raptor.core.log import critical, error, info, log_validation_result, trace, warn
 from raptor.core.net import download_file
 from raptor.core.process import run, run_and_wait
-from raptor.core.validation import ValidationResult, Severity
-from packaging.version import parse as parse_ver, Version
-from pathlib import Path
-import os
-import typer
-
+from raptor.core.validation import Severity, ValidationResult
 
 _VULKAN_ENV: str = "VK_SDK_PATH"
 _VULKAN_INSTALLER_VER: Version = Version(CONFIG.setup.get("vulkan").min_version)

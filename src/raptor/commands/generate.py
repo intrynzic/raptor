@@ -1,11 +1,12 @@
-from raptor.core.fs import doxygen_dir, docs_dir
-from raptor.core.git import repo_root
-from raptor.core.log import info, critical
-from raptor.core.process import run
 import secrets
-import typer
 import webbrowser
 
+import typer
+
+from raptor.core.fs import docs_dir, doxygen_dir
+from raptor.core.git import repo_root
+from raptor.core.log import critical, info
+from raptor.core.process import run
 
 app = typer.Typer(help = "Generate various Intricate-specific resources, documentation and identifiers.")
 

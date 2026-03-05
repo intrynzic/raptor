@@ -1,14 +1,16 @@
+import re
+from pathlib import Path
+
+import typer
+from packaging.version import Version
+from packaging.version import parse as parse_ver
+
 from raptor.config.loader import CONFIG
 from raptor.core.environ import where
-from raptor.core.log import trace, info, warn, error, critical, log_validation_result
+from raptor.core.log import critical, error, info, log_validation_result, trace, warn
 from raptor.core.net import download_file
 from raptor.core.process import run, run_and_wait
-from raptor.core.validation import ValidationResult, Severity
-from packaging.version import parse as parse_ver, Version
-from pathlib import Path
-import re
-import typer
-
+from raptor.core.validation import Severity, ValidationResult
 
 _GIT_CMD: str = "git"
 _GIT_REQUIRED_VER: Version = Version(CONFIG.setup.get("git").min_version)

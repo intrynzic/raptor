@@ -1,10 +1,10 @@
-from raptor.core.fs import vswhere_path, tmp_dir
-from raptor.core.process import run_ex
-from raptor.core.validation import ValidationResult, Severity
-from raptor.doctor.checks.check import Check
-from pathlib import Path
 import json
+from pathlib import Path
 
+from raptor.core.fs import tmp_dir, vswhere_path
+from raptor.core.process import run_ex
+from raptor.core.validation import Severity, ValidationResult
+from raptor.doctor.checks.check import Check
 
 _CPP_STANDARD = "/std:c++23preview"
 

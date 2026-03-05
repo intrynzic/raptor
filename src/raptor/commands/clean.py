@@ -1,13 +1,14 @@
+import os
+import shutil
+import time
+from pathlib import Path
+
+import typer
+
 from raptor.config.loader import CONFIG
 from raptor.config.structs import CleanTarget
 from raptor.core.git import repo_root
 from raptor.core.log import error, info, trace, warn
-import os
-import shutil
-import time
-import typer
-from pathlib import Path
-
 
 app = typer.Typer(help = "Clean the workspace's configured clean targets.")
 

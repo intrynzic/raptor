@@ -1,11 +1,12 @@
-from raptor.core.log import info, warn, error, critical, _log
+import json
+import os
+
+import typer
+
+from raptor.core.log import _log, critical, error, info, warn
 from raptor.core.validation import Severity
 from raptor.doctor.checks.check import Check
 from raptor.doctor.registry import get_checks, type_id_to_check
-import json
-import os
-import typer
-
 
 _DOCTOR_FILE = ".raptordoctor"
 
