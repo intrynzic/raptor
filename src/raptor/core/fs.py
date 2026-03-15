@@ -1,6 +1,8 @@
 import os
 from functools import cache
+from importlib.resources import as_file, files
 from pathlib import Path
+import platform
 
 from raptor.config.loader import CONFIG
 from raptor.core.git import repo_root
@@ -57,4 +59,12 @@ def doxygen_dir() -> Path:
 
 @cache
 def premake_path() -> Path:
-    return tools_dir() / "Premake" / "premake5.exe"
+    # TODO: Use me!
+    platform.system()
+
+    # TODO: Choose based off of OS now
+    premake_res = files("intricate-raptor").joinpath("bin/premake/premake5-windows.exe")
+    return Path(as_file(premake_res))
+
+
+    # return tools_dir() / "Premake" / "premake5.exe"
