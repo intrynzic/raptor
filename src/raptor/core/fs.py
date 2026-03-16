@@ -1,8 +1,8 @@
 import os
+import platform
 from functools import cache
 from importlib.resources import as_file, files
 from pathlib import Path
-import platform
 
 from raptor.config.loader import CONFIG
 from raptor.core.git import repo_root
@@ -62,10 +62,14 @@ def doxygen_dir() -> Path:
 def premake_path() -> Path:
     system = platform.system()
     match system:
-        case "Windows": binary = "premake5-windows.exe"
-        case "Linux": binary = "premake5-linux"
-        case "Darwin": binary = "premake5-macosx-x64"
-        case _: critical(f"Unsupported platform '{system}'!")
+        case "Windows":
+            binary = "premake5-windows.exe"
+        case "Linux":
+            binary = "premake5-linux"
+        case "Darwin":
+            binary = "premake5-macosx-x64"
+        case _:
+            critical(f"Unsupported platform '{system}'!")
 
     # TODO: Rename this import and the folder structure to intricate_raptor
     premake_res = files("raptor").joinpath(f"bin/premake/{binary}")
