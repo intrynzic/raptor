@@ -1,10 +1,10 @@
 ###############################################################################
-# Normalize line endings using LF.
+# Normalize line endings using LF for text files.
 ###############################################################################
-* text eol=lf
+* text=auto eol=lf
 
 ###############################################################################
-# Behavior for binary files.
+# Binary files (never modify, never diff)
 ###############################################################################
 *.png   binary
 *.jpg   binary
@@ -21,6 +21,15 @@
 *.mp4   binary
 *.mkv   binary
 *.ts    binary
+*.zip   binary
+*.7z    binary
+*.gz    binary
+*.tar   binary
+*.rar   binary
+
+###############################################################################
+# Executables and libraries
+###############################################################################
 *.exe   binary
 *.dll   binary
 *.lib   binary
