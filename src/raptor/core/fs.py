@@ -61,7 +61,7 @@ def doxygen_dir() -> Path:
 @cache
 def premake_path() -> Path:
     binary = "premake5.exe" if platform.system() == "Windows" else "premake5"
-    path = Path(str(files("raptor").joinpath(f"bin/premake/{binary}")))
+    path = Path(str(files("raptor").joinpath(f"bin/{binary}")))
 
     if not path.exists():
         critical(f"Premake5 binary not found at \"{path}\"!")
