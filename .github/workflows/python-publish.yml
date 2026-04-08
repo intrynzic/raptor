@@ -28,7 +28,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
+        # NOTE: PyPI doesn't accept plain linux_aarch64 - Linux wheels must use the manylinux or musllinux platform tags to be accepted.
+      - name: Build Linux wheels (manylinux)
+        if: runner.os == 'Linux'
+        uses: pypa/cibuildwheel@v2.23.0
+        with:
+          output-dir: dist
+        env:
+          CIBW_ARCHS: ${{ matrix.arch }}
+          CIBW_BUILD: "cp313-manylinux*"
+
+      - name: Setup uv (non-Linux)
+        if: runner.os != 'Linux'
+        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
         with:
           working-directory: "."
           enable-cache: true
@@ -41,9 +53,9 @@ jobs:
             **/uv.lock
             **/*.py.lock
 
-      - name: Build release distributions
-        run: |
-          uv build --wheel
+      - name: Build release distributions (non-Linux)
+        if: runner.os != 'Linux'
+        run: uv build --wheel
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
