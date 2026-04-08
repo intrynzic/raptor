@@ -8,7 +8,7 @@ from raptor.core.git import repo_root
 from raptor.core.log import critical, info
 from raptor.core.process import run
 
-app = typer.Typer(help="Generate various Intricate-specific resources, documentation and identifiers.")
+app = typer.Typer(help="Generate various IntricateEngine-specific resources, documentation and identifiers.")
 
 
 @app.command(help="Generate IntricateEngine GUIDs.", no_args_is_help=True)
