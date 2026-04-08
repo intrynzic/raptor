@@ -101,7 +101,7 @@ wheels = [
 ]
 
 [[package]]
-name = "intricate-raptor"
+name = "intrynzic-raptor"
 version = "0.0.4"
 source = { editable = "." }
 dependencies = [
