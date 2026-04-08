@@ -31,7 +31,7 @@ jobs:
         # NOTE: PyPI doesn't accept plain linux_aarch64 - Linux wheels must use the manylinux or musllinux platform tags to be accepted.
       - name: Build Linux wheels (manylinux)
         if: runner.os == 'Linux'
-        uses: pypa/cibuildwheel@v2.23.0
+        uses: pypa/cibuildwheel@v3.4.1
         with:
           output-dir: dist
         env:
