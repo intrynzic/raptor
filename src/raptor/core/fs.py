@@ -71,7 +71,7 @@ def premake_path() -> Path:
         case _:
             critical(f"Unsupported platform '{system}'!")
 
-    # TODO: Rename this import and the folder structure to intricate_raptor
+    # TODO: Rename this import and the folder structure to intrynzic_raptor
     premake_res = files("raptor").joinpath(f"bin/premake/{binary}")
     with as_file(premake_res) as p:
         return Path(p)

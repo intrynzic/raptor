@@ -10,7 +10,7 @@ app = typer.Typer()
 
 def print_version():
     try:
-        typer.echo(version("intricate-raptor"))
+        typer.echo(version("intrynzic-raptor"))
     except PackageNotFoundError:
         typer.echo("0.0.0")
 

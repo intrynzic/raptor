@@ -7,8 +7,8 @@ from raptor.doctor.checks.check import Check
 
 class RaptorCheck(Check):
     type_id = "RaptorCheck"
-    name = "Intricate-Raptor"
-    description = "Validates this installation of Intricate-Raptor."
+    name = "Intrynzic-Raptor"
+    description = "Validates this installation of Intrynzic-Raptor."
 
     def validate(self) -> ValidationResult:
         # TODO: This must ALL be reworked!
@@ -23,7 +23,7 @@ class RaptorCheck(Check):
         )
 
         if installed_ver != repo_ver:
-            return ValidationResult(valid=False, severity=Severity.ERROR, message="Incorrect Intricate-Raptor version installed!")
+            return ValidationResult(valid=False, severity=Severity.ERROR, message="Incorrect Intrynzic-Raptor version installed!")
 
         return ValidationResult(valid=True, severity=Severity.NONE)
 
