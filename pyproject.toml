@@ -7,7 +7,7 @@ wheel.packages = ["raptor"]
 
 [project]
 name = "intrynzic-raptor"
-version = "0.0.4"
+version = "0.0.5"
 description = "The developer tooling suite for Intrynzic's projects, automating environment bootstrap, SDK setup, build orchestration and more."
 readme = "README.md"
 authors = [
