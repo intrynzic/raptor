@@ -12,55 +12,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: ubuntu-latest
-            arch: x86_64
-          - os: ubuntu-24.04-arm
-            arch: aarch64
-          - os: macos-26-intel
-            arch: x86_64
-          - os: macos-latest
-            arch: arm64
-          - os: windows-latest
-            arch: AMD64
+        os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
 
-        # NOTE: PyPI doesn't accept plain linux_aarch64 - Linux wheels must use the manylinux or musllinux platform tags to be accepted.
-      - name: Build Linux wheels (manylinux)
-        if: runner.os == 'Linux'
+      - name: Build wheels
         uses: pypa/cibuildwheel@v3.4.1
         with:
           output-dir: dist
-        env:
-          CIBW_ARCHS: ${{ matrix.arch }}
-          CIBW_BUILD: "cp313-manylinux*"
-
-      - name: Setup uv (non-Linux)
-        if: runner.os != 'Linux'
-        uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
-        with:
-          working-directory: "."
-          enable-cache: true
-          cache-dependency-glob: |
-            **/*requirements*.txt
-            **/*requirements*.in
-            **/*constraints*.txt
-            **/*constraints*.in
-            **/pyproject.toml
-            **/uv.lock
-            **/*.py.lock
-
-      - name: Build release distributions (non-Linux)
-        if: runner.os != 'Linux'
-        run: uv build --wheel
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:
-          name: release-dists-${{ matrix.os }}-${{ matrix.arch }}
+          name: release-dists-${{ matrix.os }}
           path: dist/
 
   pypi-publish:

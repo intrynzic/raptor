@@ -50,11 +50,10 @@ indent-style = "space"
 
 [tool.cibuildwheel]
 build-frontend = "build[uv]"
-build = ["cp313-manylinux*"]
+build = ["cp313-*"]
 
 [tool.cibuildwheel.linux]
 archs = ["x86_64", "aarch64"]
-repair-wheel-command = "auditwheel addtag {wheel} -w {dest_dir}"
 
 [tool.cibuildwheel.macos]
 archs = ["x86_64", "arm64"]
