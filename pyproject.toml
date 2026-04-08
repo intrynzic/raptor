@@ -8,7 +8,7 @@ wheel.py-api = "cp313"
 
 [project]
 name = "intrynzic-raptor"
-version = "0.0.5"
+version = "0.0.6"
 description = "The developer tooling suite for Intrynzic's projects, automating environment bootstrap, SDK setup, build orchestration and more."
 readme = "README.md"
 authors = [
