@@ -1,6 +1,9 @@
 [build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
+requires = ["scikit-build-core"]
+build-backend = "scikit_build_core.build"
+
+[tool.scikit-build]
+wheel.packages = ["raptor"]
 
 [project]
 name = "intrynzic-raptor"
@@ -43,6 +46,3 @@ ignore = []
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
-
-[tool.setuptools.package-data]
-"raptor" = ["raptor/bin/premake/**"]
