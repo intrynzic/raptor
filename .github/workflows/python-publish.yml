@@ -28,10 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup uv
-        run: |
-          chmod +x setup.sh
-          ./setup.sh
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
 
       - name: Build release distributions
         run: |
