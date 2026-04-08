@@ -3,9 +3,9 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "intricate-raptor"
+name = "intrynzic-raptor"
 version = "0.0.4"
-description = "Internal developer tooling for the Intricate Engine."
+description = "The developer tooling suite for Intrynzic's projects, automating environment bootstrap, SDK setup, build orchestration and more."
 readme = "README.md"
 authors = [
     { name = "Intrynzic Software" }
@@ -23,9 +23,9 @@ dependencies = [
 raptor = "raptor.cli:app"
 
 [project.urls]
-Homepage = "https://github.com/Intricate-Dev-Team/raptor"
-Repository = "https://github.com/Intricate-Dev-Team/raptor.git"
-Issues = "https://github.com/Intricate-Dev-Team/raptor/issues"
+Homepage = "https://github.com/intrynzic/raptor"
+Repository = "https://github.com/intrynzic/raptor.git"
+Issues = "https://github.com/intrynzic/raptor/issues"
 
 [dependency-groups]
 dev = [
