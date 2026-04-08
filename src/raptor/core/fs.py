@@ -1,7 +1,7 @@
 import os
 import platform
 from functools import cache
-from importlib.resources import as_file, files
+from importlib.resources import files
 from pathlib import Path
 
 from raptor.config.loader import CONFIG
@@ -60,18 +60,11 @@ def doxygen_dir() -> Path:
 
 @cache
 def premake_path() -> Path:
-    system = platform.system()
-    match system:
-        case "Windows":
-            binary = "premake5-windows.exe"
-        case "Linux":
-            binary = "premake5-linux"
-        case "Darwin":
-            binary = "premake5-macosx-x64"
-        case _:
-            critical(f"Unsupported platform '{system}'!")
+    binary = "premake5.exe" if platform.system() == "Windows" else "premake5"
+    path = Path(str(files("raptor").joinpath(f"bin/{binary}")))
 
-    # TODO: Rename this import and the folder structure to intrynzic_raptor
-    premake_res = files("raptor").joinpath(f"bin/premake/{binary}")
-    with as_file(premake_res) as p:
-        return Path(p)
+    if not path.exists():
+        critical(f'Premake5 binary not found at "{path}"!')
+        return Path()
+
+    return path

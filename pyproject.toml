@@ -1,10 +1,14 @@
 [build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
+requires = ["scikit-build-core"]
+build-backend = "scikit_build_core.build"
+
+[tool.scikit-build]
+wheel.packages = ["raptor"]
+wheel.py-api = "cp313"
 
 [project]
 name = "intrynzic-raptor"
-version = "0.0.4"
+version = "0.0.5"
 description = "The developer tooling suite for Intrynzic's projects, automating environment bootstrap, SDK setup, build orchestration and more."
 readme = "README.md"
 authors = [
@@ -43,6 +47,3 @@ ignore = []
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
-
-[tool.setuptools.package-data]
-"raptor" = ["raptor/bin/premake/**"]
