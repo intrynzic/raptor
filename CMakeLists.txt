@@ -16,8 +16,15 @@ else()
     set(PREMAKE_DEST "premake5")
 endif()
 
+# Install selected Premake binary
 install(
     PROGRAMS "${CMAKE_SOURCE_DIR}/${PREMAKE_BIN}"
-    DESTINATION "src/raptor/bin"
+    DESTINATION "raptor/bin"
     RENAME "${PREMAKE_DEST}"
+)
+
+# Install Raptor's Python source
+install(
+    DIRECTORY "${CMAKE_SOURCE_DIR}/src/raptor"
+    DESTINATION "."
 )
