@@ -64,7 +64,7 @@ def premake_path() -> Path:
     path = Path(str(files("raptor").joinpath(f"bin/{binary}")))
 
     if not path.exists():
-        critical(f"Premake5 binary not found at \"{path}\"!")
+        critical(f'Premake5 binary not found at "{path}"!')
         return Path()
 
     return path
