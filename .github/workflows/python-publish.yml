@@ -32,7 +32,7 @@ jobs:
             **/*.py.lock
 
       - name: Build Premake from source (Linux)
-        if: runner.os == "Linux"
+        if: ${{runner.os == 'Linux'}}
         run: |
           curl -L -o premake.tar.gz https://github.com/premake/premake-core/archive/refs/tags/v5.0.0-beta8.tar.gz
           tar -xvf premake.tar.gz
