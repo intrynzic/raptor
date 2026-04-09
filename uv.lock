@@ -102,7 +102,7 @@ wheels = [
 
 [[package]]
 name = "intrynzic-raptor"
-version = "0.0.5"
+version = "0.0.6"
 source = { editable = "." }
 dependencies = [
     { name = "packaging" },
