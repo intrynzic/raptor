@@ -53,7 +53,7 @@ build-frontend = "build[uv]"
 build = ["cp313-*"]
 
 [tool.cibuildwheel.linux]
-archs = ["x86_64", "aarch64"]
+archs = ["x86_64"]
 repair-wheel-command = ""
 
 [tool.cibuildwheel.macos]
