@@ -54,7 +54,7 @@ build = ["cp313-*"]
 
 [tool.cibuildwheel.linux]
 archs = ["x86_64"]
-repair-wheel-command = ""
+repair-wheel-command = "auditwheel repair -w {dest_dir} {wheel}"
 
 [tool.cibuildwheel.macos]
 archs = ["x86_64", "arm64"]
