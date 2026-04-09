@@ -31,6 +31,15 @@ jobs:
             **/uv.lock
             **/*.py.lock
 
+      - name: Build Premake from source (Linux)
+        if: runner.os == "Linux"
+        run: |
+          curl -L -o premake.tar.gz https://github.com/premake/premake-core/archive/refs/tags/v5.0.0-beta8.tar.gz
+          tar -xvf premake.tar.gz
+          cd premake-core-5.0.0-beta8
+          make -f Bootstrap.mak linux
+          cp ./bin/release/premake5 ../binaries/premake/premake5-linux
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.4.1
         with:
