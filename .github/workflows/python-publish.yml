@@ -42,6 +42,7 @@ jobs:
             cd premake-core-5.0.0-beta8
             yum install -y libuuid-devel make gcc
             make -f Bootstrap.mak linux
+            mkdir ../bin
             cp ./bin/release/premake5 ../bin/premake5
 
           CIBW_BEFORE_ALL_MACOS_X86_64: |
@@ -49,6 +50,7 @@ jobs:
             tar -xvf premake.tar.gz
             cd premake-core-5.0.0-beta8
             make -f Bootstrap.mak osx PLATFORM=x86
+            mkdir ../bin
             cp ./bin/release/premake5 ../bin/premake5
 
           CIBW_BEFORE_ALL_MACOS_ARM64: |
@@ -56,6 +58,7 @@ jobs:
             tar -xvf premake.tar.gz
             cd premake-core-5.0.0-beta8
             make -f Bootstrap.mak osx PLATFORM=ARM64
+            mkdir ../bin
             cp ./bin/release/premake5 ../bin/premake5
 
           CIBW_BEFORE_ALL_WINDOWS: |
@@ -63,6 +66,7 @@ jobs:
             Expand-Archive premake.zip -DestinationPath .
             cd premake-core-5.0.0-beta8
             nmake -f Bootstrap.mak windows
+            mkdir ../bin
             Copy-Item .\bin\release\premake5.exe ..\bin\premake5.exe
 
       - name: Upload distributions
