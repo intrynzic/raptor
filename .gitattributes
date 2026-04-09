@@ -30,9 +30,13 @@
 ###############################################################################
 # Executables and libraries
 ###############################################################################
-*.exe   binary
-*.dll   binary
-*.lib   binary
-*.so    binary
-*.dylib binary
-*.solib binary
+*.exe       binary
+*.dll       binary
+*.lib       binary
+*.so        binary
+*.dylib     binary
+*.solib     binary
+bin/*       binary
+binaries/*  binary
+build/*     binary
+out/*       binary
