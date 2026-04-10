@@ -49,7 +49,7 @@ jobs:
             curl -L -o premake.tar.gz https://github.com/premake/premake-core/archive/refs/tags/v5.0.0-beta8.tar.gz
             tar -xvf premake.tar.gz
             cd premake-core-5.0.0-beta8
-            make -f Bootstrap.mak osx
+            make -f Bootstrap.mak osx PLATFORM=${{ env.CIBW_ARCHS }}
             mkdir ../bin
             cp ./bin/release/premake5 ../bin/premake5
 
@@ -57,7 +57,7 @@ jobs:
             curl -L -o premake.zip https://github.com/premake/premake-core/archive/refs/tags/v5.0.0-beta8.zip
             Expand-Archive premake.zip -DestinationPath .
             cd premake-core-5.0.0-beta8
-            Bootstrap.bat
+            cmd /c Bootstrap.bat
             mkdir ..\bin -Force
             Copy-Item .\bin\release\premake5.exe ..\bin\premake5.exe
 
