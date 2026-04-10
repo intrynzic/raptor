@@ -32,6 +32,7 @@ jobs:
           workflow_conclusion: success
           name: release-dists-.*
           name_is_regexp: true
+          merge_multiple: true
           path: dist/
           if_no_artifact_found: error
 
