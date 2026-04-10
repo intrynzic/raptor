@@ -32,9 +32,15 @@ jobs:
           workflow_conclusion: success
           name: release-dists-.*
           name_is_regexp: true
-          merge_multiple: true
+          # merge_multiple: true # Not currently working for some reason, even though its supposed to be!
           path: dist/
           if_no_artifact_found: error
+
+        # NOTE: This is only required since merge_multiple in dawidd6/action-download-artifact is currently not working
+      - name: Flatten distributions
+        run: |
+          find dist/ -mindepth 2 -type f -name "*.whl" -exec mv -t dist/ {} +
+          find dist/ -mindepth 1 -type d -delete
 
       - name: Verify distributions
         run: ls -lh dist
