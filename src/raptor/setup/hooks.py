@@ -18,7 +18,7 @@ _HOOK_TEMPLATE = """#!/bin/sh
 # {version}
 # Raptor Git Hook
 
-exec raptor hook run {hook_name} "$@"
+exec raptor hook run {hook_name} ${{1+"$@"}}
 """
 
 
