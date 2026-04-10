@@ -26,13 +26,14 @@ jobs:
 
     steps:
       - name: Retrieve release distributions
-        uses: actions/download-artifact@v4
+        uses: dawidd6/action-download-artifact@v3
         with:
-          pattern: release-dists-*
-          merge-multiple: true
+          workflow: build.yml
+          workflow_conclusion: success
+          name: release-dists-.*
+          name_is_regexp: true
           path: dist/
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          run-id: ${{ github.event.workflow_run.id }}
+          if_no_artifact_found: error
 
       - name: Verify distributions
         run: ls -lh dist
