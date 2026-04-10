@@ -11,7 +11,7 @@ from raptor.core.log import error, info, log_validation_result, trace
 from raptor.core.validation import Severity, ValidationResult
 from raptor.hooks.registry import HOOK_REGISTRY
 
-_HOOK_VER: Version = Version("1.1.0")
+_HOOK_VER: Version = Version("1.2.0")
 _HOOK_REQUIRED_VER: Version = Version(CONFIG.setup.get("git-hooks").min_version)
 
 _HOOK_TEMPLATE = """#!/bin/sh
