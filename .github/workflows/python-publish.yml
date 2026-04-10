@@ -4,61 +4,13 @@ on:
   release:
     types: [published]
 
-permissions:
-  contents: read
-
 jobs:
-  release-build:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: astral-sh/setup-uv@cec208311dfd045dd5311c1add060b2062131d57
-        with:
-          working-directory: "."
-          enable-cache: true
-          cache-dependency-glob: |
-            **/*requirements*.txt
-            **/*requirements*.in
-            **/*constraints*.txt
-            **/*constraints*.in
-            **/pyproject.toml
-            **/uv.lock
-            **/*.py.lock
-
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v3.4.1
-        with:
-          output-dir: dist
-        env:
-          CIBW_BEFORE_ALL_LINUX: |
-            curl -L -o premake.tar.gz https://github.com/premake/premake-core/archive/refs/tags/v5.0.0-beta8.tar.gz
-            tar -xvf premake.tar.gz
-            cd premake-core-5.0.0-beta8
-            yum install -y libuuid-devel make gcc
-            make -f Bootstrap.mak linux
-
-            rm ../binaries/premake5-linux
-            cp ./bin/release/premake5 ../binaries/premake5-linux
-
-      - name: Upload distributions
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-dists-${{ matrix.os }}
-          path: dist/
-
   pypi-publish:
     runs-on: ubuntu-latest
-    needs:
-      - release-build
     permissions:
       # IMPORTANT: this permission is mandatory for trusted publishing
       id-token: write
+      contents: read
 
     # Dedicated environments with protections for publishing are strongly recommended.
     # For more information, see: https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#deployment-protection-rules
@@ -79,6 +31,8 @@ jobs:
           pattern: release-dists-*
           merge-multiple: true
           path: dist/
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
 
       - name: Verify distributions
         run: ls -lh dist
