@@ -11,7 +11,7 @@ app = typer.Typer(help="Run Git hooks.")
 @app.command(help="Run a Git hook.")
 def run(
     name: str = typer.Argument(help="The name of the hook to run."),
-    args: Optional[List[str]] = typer.Argument(None, help="Arguments passed from Git.")
+    args: Optional[List[str]] = typer.Argument(None, help="Arguments passed from Git."),
 ):
     if name not in HOOK_REGISTRY.keys():
         error(f"Hook '{name}' is not installed!")
