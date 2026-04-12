@@ -1,5 +1,5 @@
 [build-system]
-requires = ["scikit-build-core"]
+requires = ["scikit_build_core"]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
@@ -8,7 +8,7 @@ wheel.py-api = "cp313"
 
 [project]
 name = "intrynzic-raptor"
-version = "0.0.9"
+version = "0.0.10"
 description = "The developer tooling suite for Intrynzic's projects, automating environment bootstrap, SDK setup, build orchestration and more."
 readme = "README.md"
 authors = [
