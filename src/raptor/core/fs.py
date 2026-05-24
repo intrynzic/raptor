@@ -22,7 +22,11 @@ def msbuild_path() -> Path:
 
 @cache
 def raptor_dir() -> Path:
-    return repo_root() / ".raptor"
+    _DIR = repo_root() / ".raptor"
+    if not _DIR.exists():
+        os.makedirs(_DIR)
+
+    return _DIR
 
 
 @cache
