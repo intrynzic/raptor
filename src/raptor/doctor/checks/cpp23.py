@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from raptor.core.fs import tmp_dir, vswhere_path
+from raptor.core.fs import temp_dir, vswhere_path
 from raptor.core.process import run_ex
 from raptor.core.validation import Severity, ValidationResult
 from raptor.doctor.checks.check import Check
@@ -50,7 +50,7 @@ class Cpp23Check(Check):
         if not cl_path.exists():
             return ValidationResult(valid=False, severity=Severity.ERROR, message="cl.exe could not be found!")
 
-        cpp_file = tmp_dir() / "test.cpp"
+        cpp_file = temp_dir() / "test.cpp"
         with open(cpp_file, "w") as cpp:
             cpp.write(_CPP_CODE)
 
@@ -58,7 +58,7 @@ class Cpp23Check(Check):
         if not vcvars.exists():
             return ValidationResult(valid=False, severity=Severity.ERROR, message="vcvars64.bat could not be found!")
 
-        result = run_ex([vcvars, "&&", cl_path, "/c", _CPP_STANDARD, cpp_file], cwd=tmp_dir())
+        result = run_ex([vcvars, "&&", cl_path, "/c", _CPP_STANDARD, cpp_file], cwd=temp_dir())
         if result is None or (result.returncode != 0):
             return ValidationResult(valid=False, severity=Severity.ERROR, message="Compiler does not support C++23!")
 

@@ -20,15 +20,19 @@ def msbuild_path() -> Path:
     res = run([vswhere_path(), "-latest", "-requires", "Microsoft.Component.MSBuild", "-find", r"MSBuild\**\Bin\MSBuild.exe"], capture=True)
     return Path(res)
 
+@cache
+def raptor_dir() -> Path:
+    return repo_root() / ".raptor"
+
 
 @cache
 def hooks_dir() -> Path:
-    return repo_root() / ".raptor" / "hooks"
+    return raptor_dir() / "hooks"
 
 
 @cache
-def tmp_dir() -> Path:
-    _DIR = repo_root() / ("tmp" if CONFIG.paths.temp_dir is None else CONFIG.paths.temp_dir)
+def temp_dir() -> Path:
+    _DIR = raptor_dir() / "temp"
     if not _DIR.exists():
         os.makedirs(_DIR)
 
