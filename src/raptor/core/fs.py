@@ -20,6 +20,7 @@ def msbuild_path() -> Path:
     res = run([vswhere_path(), "-latest", "-requires", "Microsoft.Component.MSBuild", "-find", r"MSBuild\**\Bin\MSBuild.exe"], capture=True)
     return Path(res)
 
+
 @cache
 def raptor_dir() -> Path:
     _DIR = repo_root() / ".raptor"
