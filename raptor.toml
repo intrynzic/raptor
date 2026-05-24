@@ -1,0 +1,155 @@
+#
+# Sample raptor.toml file
+#
+
+[raptor]
+version = "1.0.0"
+
+[raptor.paths]
+docs_dir = "docs"
+temp_dir = "tmp"
+tools_dir = "Tools"
+
+[raptor.setup]
+headless = false
+
+[[raptor.setup.environment]]
+name = "git"
+min_version = "2.53.0"
+
+[[raptor.setup.environment]]
+name = "git-hooks"
+min_version = "1.2.0"
+
+[[raptor.setup.environment]]
+name = "vulkan"
+min_version = "1.4.335.0"
+
+[[raptor.setup.environment]]
+name = "dotnet"
+min_version = "10.0.204"
+
+[[raptor.setup.environment]]
+name = "doxygen"
+min_version = "1.16.1"
+
+[raptor.doctor]
+[[raptor.doctor.checks]]
+name = "git"
+[[raptor.doctor.checks]]
+name = "git-hooks"
+[[raptor.doctor.checks]]
+name = "doxygen"
+[[raptor.doctor.checks]]
+name = "vulkan"
+[[raptor.doctor.checks]]
+name = "vulkan-driver"
+[[raptor.doctor.checks]]
+name = "dotnet"
+[[raptor.doctor.checks]]
+name = "visualstudio"
+[[raptor.doctor.checks]]
+name = "windows"
+[[raptor.doctor.checks]]
+name = "cpp23"
+
+[raptor.premake]
+default_action = "vs2026"
+supported_actions = ["vs2026", "vs2022"]
+
+[raptor.workspace]
+dir = "."
+name = "IntricateEngine"
+configs = ["Debug", "Dev", "Profiling", "Release"]
+default_config = "Dev"
+default_arch = "x64" # TODO: Maybe move this somewhere else? Or change it to a list of architectures.
+
+[raptor.workspace.executable_projects.IntricateEditor]
+dir = "IntricateEditor"
+language = "cpp"
+arch = "x64"
+build_mode = "solution"
+
+[raptor.workspace.executable_projects.BindingsGenerator]
+dir = "Tools/BindingsGenerator"
+language = "csharp"
+arch = "AnyCPU"
+build_mode = "project"
+
+[raptor.workspace.executable_projects.ImGuiCodeGenerator]
+dir = "Tools/ImGuiCodeGenerator"
+language = "csharp"
+arch = "AnyCPU"
+build_mode = "project"
+
+[raptor.workspace.executable_projects.ResourceGenerator]
+dir = "Tools/ResourceGenerator"
+language = "csharp"
+arch = "AnyCPU"
+build_mode = "project"
+
+[raptor.clean.targets.workspace]
+search_dirs = [
+    ".",
+    "IntricateEditor",
+    "IntricateEditor.NET",
+    "IntricateEngine",
+    "IntricateEngine.NET",
+    "Tools/BindingsGenerator",
+    "Tools/ImGuiCodeGenerator",
+    "Tools/ResourceGenerator"
+]
+delete_dirs = []
+files = [".intricatedoctor"]
+file_exts = [
+    ".csproj",
+    ".vcxproj",
+    ".vcxproj.filters",
+    ".vcxproj.user",
+    ".sln",
+    ".slnx"
+]
+depth = "shallow"
+
+[raptor.clean.targets.vendor]
+search_dirs = [
+    "Vendor/box2d",
+    "Vendor/glfw",
+    "Vendor/PhysX",
+    "Vendor/PhysX/physx/pvdruntime",
+    "Vendor/PhysX/physx/source/common",
+    "Vendor/spdlog",
+    "Vendor/yaml-cpp"
+]
+delete_dirs = []
+files = []
+file_exts = [
+    ".csproj",
+    ".vcxproj",
+    ".vcxproj.filters",
+    ".vcxproj.user",
+    ".sln",
+    ".slnx"
+]
+depth = "shallow"
+
+[raptor.clean.targets.bin]
+search_dirs = ["."]
+delete_dirs = ["bin"]
+files = []
+file_exts = []
+depth = "shallow"
+
+[raptor.clean.targets.int]
+search_dirs = ["."]
+delete_dirs = ["bin/int", "bin/intermediate", "bin/obj"]
+files = []
+file_exts = []
+depth = "shallow"
+
+[raptor.clean.targets.docs]
+search_dirs = ["."]
+delete_dirs = ["docs"]
+files = []
+file_exts = []
+depth = "shallow"
