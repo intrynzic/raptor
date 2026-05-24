@@ -7,7 +7,7 @@ from packaging.version import parse as parse_ver
 
 from raptor.config.loader import CONFIG
 from raptor.core.environ import get_system_env_var
-from raptor.core.fs import tmp_dir
+from raptor.core.fs import temp_dir
 from raptor.core.git import repo_root
 from raptor.core.log import critical, error, info, log_validation_result, trace, warn
 from raptor.core.net import download_file
@@ -19,7 +19,7 @@ _VULKAN_INSTALLER_VER: Version = Version(CONFIG.setup.get("vulkan").min_version)
 
 _VULKAN_INSTALLER_NAME: str = f"vulkansdk-windows-X64-{_VULKAN_INSTALLER_VER}.exe"
 _VULKAN_INSTALLER_URL: str = f"https://sdk.lunarg.com/sdk/download/{_VULKAN_INSTALLER_VER}/windows/{_VULKAN_INSTALLER_NAME}"
-_VULKAN_INSTALLER_DIR: Path = tmp_dir()
+_VULKAN_INSTALLER_DIR: Path = temp_dir()
 _VULKAN_INSTALLER_PATH: Path = _VULKAN_INSTALLER_DIR / _VULKAN_INSTALLER_NAME
 
 

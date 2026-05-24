@@ -6,7 +6,7 @@ from packaging.version import parse as parse_ver
 
 from raptor.config.loader import CONFIG
 from raptor.core.environ import where
-from raptor.core.fs import tmp_dir
+from raptor.core.fs import temp_dir
 from raptor.core.git import repo_root
 from raptor.core.log import critical, error, info, log_validation_result, trace, warn
 from raptor.core.net import download_file
@@ -18,7 +18,7 @@ _DOTNET_INSTALLER_VER: Version = Version(CONFIG.setup.get("dotnet").min_version)
 
 _DOTNET_INSTALLER_NAME: str = f"dotnet-sdk-{_DOTNET_INSTALLER_VER}-win-x64.exe"
 _DOTNET_INSTALLER_URL: str = f"https://builds.dotnet.microsoft.com/dotnet/Sdk/{_DOTNET_INSTALLER_VER}/{_DOTNET_INSTALLER_NAME}"
-_DOTNET_INSTALLER_DIR: Path = tmp_dir()
+_DOTNET_INSTALLER_DIR: Path = temp_dir()
 _DOTNET_INSTALLER_PATH: Path = _DOTNET_INSTALLER_DIR / _DOTNET_INSTALLER_NAME
 
 

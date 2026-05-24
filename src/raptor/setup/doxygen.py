@@ -6,7 +6,7 @@ from packaging.version import Version
 from packaging.version import parse as parse_ver
 
 from raptor.config.loader import CONFIG
-from raptor.core.fs import tmp_dir, tools_dir
+from raptor.core.fs import temp_dir, tools_dir
 from raptor.core.log import critical, error, info, log_validation_result, trace, warn
 from raptor.core.net import download_file
 from raptor.core.process import run
@@ -20,7 +20,7 @@ _DOXYGEN_ARCHIVE_NAME: str = f"doxygen-{_DOXYGEN_REQUIRED_VER}.windows.x64.bin.z
 _DOXYGEN_ARCHIVE_URL: str = (
     f"https://github.com/doxygen/doxygen/releases/download/Release_{str(_DOXYGEN_REQUIRED_VER).replace('.', '_')}/{_DOXYGEN_ARCHIVE_NAME}"
 )
-_DOXYGEN_ARCHIVE_DIR: Path = tmp_dir()
+_DOXYGEN_ARCHIVE_DIR: Path = temp_dir()
 _DOXYGEN_ARCHIVE_PATH: Path = _DOXYGEN_ARCHIVE_DIR / _DOXYGEN_ARCHIVE_NAME
 
 

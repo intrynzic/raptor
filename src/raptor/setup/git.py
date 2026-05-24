@@ -18,7 +18,7 @@ _GIT_INSTALLER_VER: str = f"{_GIT_REQUIRED_VER}.windows.1"
 
 _GIT_INSTALLER_NAME: str = f"Git-{_GIT_REQUIRED_VER}-64-bit.exe"
 _GIT_INSTALLER_URL: str = f"https://github.com/git-for-windows/git/releases/download/v{_GIT_INSTALLER_VER}/{_GIT_INSTALLER_NAME}"
-_GIT_INSTALLER_DIR: Path = Path("./tmp")  # NOTE: Can't use tmp_dir since it relies on Git to find repo_root
+_GIT_INSTALLER_DIR: Path = Path("./tmp")  # NOTE: Can't use temp_dir since it relies on Git to find repo_root
 _GIT_INSTALLER_PATH: Path = _GIT_INSTALLER_DIR / _GIT_INSTALLER_NAME
 
 

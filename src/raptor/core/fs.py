@@ -22,13 +22,22 @@ def msbuild_path() -> Path:
 
 
 @cache
-def hooks_dir() -> Path:
-    return repo_root() / ".raptor" / "hooks"
+def raptor_dir() -> Path:
+    _DIR = repo_root() / ".raptor"
+    if not _DIR.exists():
+        os.makedirs(_DIR)
+
+    return _DIR
 
 
 @cache
-def tmp_dir() -> Path:
-    _DIR = repo_root() / ("tmp" if CONFIG.paths.temp_dir is None else CONFIG.paths.temp_dir)
+def hooks_dir() -> Path:
+    return raptor_dir() / "hooks"
+
+
+@cache
+def temp_dir() -> Path:
+    _DIR = raptor_dir() / "temp"
     if not _DIR.exists():
         os.makedirs(_DIR)
 
