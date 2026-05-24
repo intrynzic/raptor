@@ -7,6 +7,7 @@ import typer
 
 from raptor.config.loader import CONFIG
 from raptor.config.structs import CleanTarget
+from raptor.core.fs import temp_dir
 from raptor.core.git import repo_root
 from raptor.core.log import error, info, trace, warn
 
@@ -16,6 +17,9 @@ app = typer.Typer(help="Clean the workspace's configured clean targets.")
 @app.command(help="Clean all targets.")
 def all():
     start = time.perf_counter()
+
+    temp(False)
+    print()
     for name, target in CONFIG.clean.targets.items():
         create_clean_command(name, target, False)()
         print()
@@ -23,6 +27,12 @@ def all():
     end = time.perf_counter()
     elapsedMs = (end - start) * 1000
     info(f"Done ({elapsedMs:.0f}ms).")
+
+
+@app.command(help="Clean raptor's temporary data.")
+def temp(print_time: bool = True):
+    temp_target = CleanTarget(delete_dirs=[temp_dir()], depth="shallow")
+    create_clean_command("Temp", temp_target, print_time)()
 
 
 # Factory function for creating commands for each clean target
