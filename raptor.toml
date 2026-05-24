@@ -3,11 +3,10 @@
 #
 
 [raptor]
-version = "1.0.0"
+version = "1.1.0"
 
 [raptor.paths]
 docs_dir = "docs"
-temp_dir = "tmp"
 tools_dir = "Tools"
 
 [raptor.setup]
