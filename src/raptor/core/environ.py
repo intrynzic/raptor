@@ -34,19 +34,6 @@ def get_user_env_var(name: str) -> Optional[str]:
     return os.environ.get(name)
 
 
-# NOTE: This function actually isn't even used anymore... Could probably delete it
-def create_user_env_var(name: str, value: str):
-    if PLATFORM_WIN32:
-        try:
-            key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Environment")
-            winreg.SetValueEx(key, name, 0, winreg.REG_SZ, value)
-        except Exception:
-            print(f"Failed to create user environment variable {name}!")
-    else:
-        pass
-        # Non-windows implementation
-
-
 def env_var_exists(name: str) -> bool:
     return name in os.environ
 
