@@ -3,7 +3,6 @@ import shutil
 from pathlib import Path
 from typing import Optional
 
-
 # Feature detection for Windows registry features
 try:
     import winreg
