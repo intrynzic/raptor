@@ -1,31 +1,50 @@
 import os
 import shutil
-import winreg
 from pathlib import Path
+from typing import Optional
 
 
-def get_system_env_var(name: str) -> str | None:
-    key = winreg.CreateKey(winreg.HKEY_LOCAL_MACHINE, r"System\CurrentControlSet\Control\Session Manager\Environment")
-    try:
-        return winreg.QueryValueEx(key, name)[0]
-    except Exception:
-        return None
+# Feature detection for Windows registry features
+try:
+    import winreg
+    PLATFORM_WIN32 = True
+except ImportError:
+    PLATFORM_WIN32 = False
 
 
-def get_user_env_var(name: str) -> str | None:
-    key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Environment")
-    try:
-        return winreg.QueryValueEx(key, name)[0]
-    except Exception:
-        return None
+def get_system_env_var(name: str) -> Optional[str]:
+    if PLATFORM_WIN32:
+        key = winreg.CreateKey(winreg.HKEY_LOCAL_MACHINE, r"System\CurrentControlSet\Control\Session Manager\Environment")
+        try:
+            return winreg.QueryValueEx(key, name)[0]
+        except Exception:
+            return None
+
+    return os.environ.get(name)
 
 
-def create_user_env_var(name: str, value: str):
-    try:
+def get_user_env_var(name: str) -> Optional[str]:
+    if PLATFORM_WIN32:
         key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Environment")
-        winreg.SetValueEx(key, name, 0, winreg.REG_SZ, value)
-    except Exception:
-        print(f"Failed to create user environment variable {name}!")
+        try:
+            return winreg.QueryValueEx(key, name)[0]
+        except Exception:
+            return None
+
+    return os.environ.get(name)
+
+
+# NOTE: This function actually isn't even used anymore... Could probably delete it
+def create_user_env_var(name: str, value: str):
+    if PLATFORM_WIN32:
+        try:
+            key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Environment")
+            winreg.SetValueEx(key, name, 0, winreg.REG_SZ, value)
+        except Exception:
+            print(f"Failed to create user environment variable {name}!")
+    else:
+        pass
+        # Non-windows implementation
 
 
 def env_var_exists(name: str) -> bool:
