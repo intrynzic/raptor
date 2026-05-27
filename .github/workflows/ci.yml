@@ -27,8 +27,8 @@ jobs:
 
       - name: Setup uv
         run: |
-          chmod +x setup.sh
-          ./setup.sh
+          chmod +x scripts/setup.sh
+          ./scripts/setup.sh
 
       - name: Install deps
         run: uv sync
