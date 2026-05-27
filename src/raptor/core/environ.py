@@ -1,31 +1,37 @@
 import os
 import shutil
-import winreg
 from pathlib import Path
+from typing import Optional
+
+# Feature detection for Windows registry features
+try:
+    import winreg
+
+    PLATFORM_WIN32 = True
+except ImportError:
+    PLATFORM_WIN32 = False
 
 
-def get_system_env_var(name: str) -> str | None:
-    key = winreg.CreateKey(winreg.HKEY_LOCAL_MACHINE, r"System\CurrentControlSet\Control\Session Manager\Environment")
-    try:
-        return winreg.QueryValueEx(key, name)[0]
-    except Exception:
-        return None
+def get_system_env_var(name: str) -> Optional[str]:
+    if PLATFORM_WIN32:
+        try:
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"System\CurrentControlSet\Control\Session Manager\Environment") as key:
+                return winreg.QueryValueEx(key, name)[0]
+        except FileNotFoundError:
+            return None
+
+    return os.environ.get(name)
 
 
-def get_user_env_var(name: str) -> str | None:
-    key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Environment")
-    try:
-        return winreg.QueryValueEx(key, name)[0]
-    except Exception:
-        return None
+def get_user_env_var(name: str) -> Optional[str]:
+    if PLATFORM_WIN32:
+        try:
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Environment") as key:
+                return winreg.QueryValueEx(key, name)[0]
+        except FileNotFoundError:
+            return None
 
-
-def create_user_env_var(name: str, value: str):
-    try:
-        key = winreg.CreateKey(winreg.HKEY_CURRENT_USER, r"Environment")
-        winreg.SetValueEx(key, name, 0, winreg.REG_SZ, value)
-    except Exception:
-        print(f"Failed to create user environment variable {name}!")
+    return os.environ.get(name)
 
 
 def env_var_exists(name: str) -> bool:
