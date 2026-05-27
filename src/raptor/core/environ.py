@@ -7,6 +7,7 @@ from typing import Optional
 # Feature detection for Windows registry features
 try:
     import winreg
+
     PLATFORM_WIN32 = True
 except ImportError:
     PLATFORM_WIN32 = False
