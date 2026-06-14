@@ -43,18 +43,30 @@ def _premake(action: str):
     run([premake_path(), action], cwd=repo_root())
 
 
-# NOTE: The new Visual Studio 2026 .slnx format is much stricter regarding platform configurations than 2022 was.
-# Despite 'platforms' listing only 'x64' in 'premake5.lua', C# projects now default to the 'AnyCPU' platform/architecture.
+# NOTE: The Visual Studio 2026 .slnx format is significantly stricter about platform
+# configuration consistency than previous Visual Studio releases.
 #
-# Using some Premake hacks, we work around this issue, but stumble right into another one: the conditions on
-# property groups now get incorrectly outputted as:
-# '<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug X64|AnyCPU' ">'
+# Even when only 'x64' is specified in the workspace configuration, C# projects still
+# default to the 'AnyCPU' platform. Premake currently generates incorrect MSBuild
+# property group conditions in this scenario:
 #
-# To fix this, post-processing is performed on all .csproj files to replace 'Debug x64|AnyCPU' with `Debug|AnyCPU`
-# - as it's supposed to be.
+#   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug x64|AnyCPU' ">
 #
-# This fix only addresses the symptoms, but not the root cause - which is a mismatch in how Premake handles platforms
-# in MSBuild vs MSVC. Hopefully this will be fixed soon.
+# The expected condition is:
+#
+#   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+#
+# To work around this Premake/MSBuild platform mismatch, all generated .csproj files
+# are post-processed and occurrences of:
+#
+#   "<Configuration> x64|"
+#
+# are replaced with:
+#
+#   "<Configuration>|"
+#
+# This addresses the generated project file incompatibility required by Visual Studio
+# 2026, but does not resolve the underlying issue in Premake's C# project generation.
 def _post_process_vs2026():
     start = time.perf_counter()
     info("Post-processing Visual Studio 2026 project files...")
