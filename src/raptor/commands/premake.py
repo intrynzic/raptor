@@ -28,7 +28,7 @@ if "vs2026" in CONFIG.premake.supported_actions:
         info("Generating Visual Studio 2026 project files...")
         _premake("vs2026")
         print()
-        _post_process()
+        _post_process_vs2026()
 
 
 if "vs2022" in CONFIG.premake.supported_actions:
@@ -55,7 +55,7 @@ def _premake(action: str):
 #
 # This fix only addresses the symptoms, but not the root cause - which is a mismatch in how Premake handles platforms
 # in MSBuild vs MSVC. Hopefully this will be fixed soon.
-def _post_process():
+def _post_process_vs2026():
     start = time.perf_counter()
     info("Post-processing Visual Studio 2026 project files...")
 
