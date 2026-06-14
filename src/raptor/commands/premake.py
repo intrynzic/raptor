@@ -71,7 +71,7 @@ def _post_process():
 
             trace(f"Fixed {path.replace('\\', '/')[2:]}...")
 
-    for root, dirs, files in os.walk("."):
+    for root, dirs, files in os.walk(repo_root()):
         for file in files:
             if file.endswith(".csproj"):
                 _fix_csproj(os.path.join(root, file))
