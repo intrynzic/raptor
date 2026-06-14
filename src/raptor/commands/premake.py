@@ -1,5 +1,6 @@
 import os
 import time
+from pathlib import Path
 
 import typer
 
@@ -8,8 +9,6 @@ from raptor.core.fs import premake_path
 from raptor.core.git import repo_root
 from raptor.core.log import info, trace
 from raptor.core.process import run
-
-from pathlib import Path
 
 app = typer.Typer(help="Generate project files using premake.")
 
@@ -42,7 +41,7 @@ if "vs2022" in CONFIG.premake.supported_actions:
 
 
 def _premake(action: str):
-    run([premake_path(), action], cwd=repo_root(), quiet = True)
+    run([premake_path(), action], cwd=repo_root(), quiet=True)
 
 
 # NOTE: The Visual Studio 2026 .slnx format is significantly stricter about platform
