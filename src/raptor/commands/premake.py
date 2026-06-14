@@ -40,7 +40,7 @@ if "vs2022" in CONFIG.premake.supported_actions:
 
 
 def _premake(action: str):
-    run([premake_path(), action], cwd=repo_root())
+    run([premake_path(), action], cwd=repo_root(), quiet = True)
 
 
 # NOTE: The Visual Studio 2026 .slnx format is significantly stricter about platform
