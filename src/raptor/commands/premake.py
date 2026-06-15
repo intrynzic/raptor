@@ -1,5 +1,6 @@
 import os
 import time
+from pathlib import Path
 
 import typer
 
@@ -28,7 +29,7 @@ if "vs2026" in CONFIG.premake.supported_actions:
         info("Generating Visual Studio 2026 project files...")
         _premake("vs2026")
         print()
-        _post_process()
+        _post_process_vs2026()
 
 
 if "vs2022" in CONFIG.premake.supported_actions:
@@ -40,27 +41,39 @@ if "vs2022" in CONFIG.premake.supported_actions:
 
 
 def _premake(action: str):
-    run([premake_path(), action], cwd=repo_root())
+    run([premake_path(), action], cwd=repo_root(), quiet=True)
 
 
-# NOTE: The new Visual Studio 2026 .slnx format is much stricter regarding platform configurations than 2022 was.
-# Despite 'platforms' listing only 'x64' in 'premake5.lua', C# projects now default to the 'AnyCPU' platform/architecture.
+# NOTE: The Visual Studio 2026 .slnx format is significantly stricter about platform
+# configuration consistency than previous Visual Studio releases.
 #
-# Using some Premake hacks, we work around this issue, but stumble right into another one: the conditions on
-# property groups now get incorrectly outputted as:
-# '<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug X64|AnyCPU' ">'
+# Even when only 'x64' is specified in the workspace configuration, C# projects still
+# default to the 'AnyCPU' platform. Premake currently generates incorrect MSBuild
+# property group conditions in this scenario:
 #
-# To fix this, post-processing is performed on all .csproj files to replace 'Debug x64|AnyCPU' with `Debug|AnyCPU`
-# - as it's supposed to be.
+#   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug x64|AnyCPU' ">
 #
-# This fix only addresses the symptoms, but not the root cause - which is a mismatch in how Premake handles platforms
-# in MSBuild vs MSVC. Hopefully this will be fixed soon.
-def _post_process():
+# The expected condition is:
+#
+#   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+#
+# To work around this Premake/MSBuild platform mismatch, all generated .csproj files
+# are post-processed and occurrences of:
+#
+#   "<Configuration> x64|"
+#
+# are replaced with:
+#
+#   "<Configuration>|"
+#
+# This addresses the generated project file incompatibility required by Visual Studio
+# 2026, but does not resolve the underlying issue in Premake's C# project generation.
+def _post_process_vs2026():
     start = time.perf_counter()
     info("Post-processing Visual Studio 2026 project files...")
 
     # Recursively finds all .csproj files and applies the required fix
-    def _fix_csproj(path: str):
+    def _fix_csproj(path: Path):
         with open(path, "r", encoding="utf-8") as f:
             content = f.read()
 
@@ -69,12 +82,12 @@ def _post_process():
             with open(path, "w", encoding="utf-8") as f:
                 f.write(new_content)
 
-            trace(f"Fixed {path.replace('\\', '/')[2:]}...")
+            trace(f"Fixed {path.relative_to(repo_root()).as_posix()}...")
 
-    for root, dirs, files in os.walk("."):
+    for root, dirs, files in os.walk(repo_root()):
         for file in files:
             if file.endswith(".csproj"):
-                _fix_csproj(os.path.join(root, file))
+                _fix_csproj(Path(root) / file)
 
     end = time.perf_counter()
     elapsedMs = (end - start) * 1000
