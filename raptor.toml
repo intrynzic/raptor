@@ -3,7 +3,7 @@
 #
 
 [raptor]
-version = "1.1.0"
+version = "1.2.0"
 
 [raptor.paths]
 docs_dir = "docs"
@@ -152,6 +152,7 @@ delete_dirs = ["docs"]
 files = []
 file_exts = []
 depth = "shallow"
+
 [raptor.tasks.generate]
 description = "Generate all code."
 command = "dotnet"
