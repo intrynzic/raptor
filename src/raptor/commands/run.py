@@ -47,7 +47,8 @@ for prj_name in CONFIG.workspace.executable_projects.keys():
 # Factory function for creating task-run commands
 def create_taskrun_command(task: Task):
     def command():
-        run([task.command] + task.args, cwd=repo_root())
+        cwd = repo_root() if not task.cwd else repo_root() / task.cwd
+        run([task.command] + task.args, cwd=cwd)
 
     return command
 

@@ -162,6 +162,7 @@ args = ["run", "--project", "Tools/BindingsGenerator"]
 description = "Build documentation."
 command = "zensical"
 args = ["build"]
+cwd  = "Docs"
 
 [raptor.tasks.editor]
 description = "Run editor."

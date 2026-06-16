@@ -122,6 +122,7 @@ class Task(BaseModel):
     description: str
     command: str
     args: list[str] = Field(default_factory=list)
+    cwd: Optional[str] = None
 
 
 class RaptorConfig(BaseModel):
