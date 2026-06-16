@@ -152,3 +152,16 @@ delete_dirs = ["docs"]
 files = []
 file_exts = []
 depth = "shallow"
+[raptor.tasks.generate]
+description = "Generate all code."
+command = "dotnet"
+args = ["run", "--project", "Tools/BindingsGenerator"]
+
+[raptor.tasks.docs]
+description = "Build documentation."
+command = "zensical"
+args = ["build"]
+
+[raptor.tasks.editor]
+description = "Run editor."
+command = "./bin/Dev/IntricateEditor.exe"

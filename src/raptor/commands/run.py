@@ -3,10 +3,13 @@ from pathlib import Path
 import typer
 
 from raptor.config.loader import CONFIG
+from raptor.config.structs import Task
+from raptor.core.git import repo_root
 from raptor.core.log import error
+from raptor.core.process import run
 from raptor.core.msbuild import build, build_and_run, run_project
 
-app = typer.Typer(help="Build and run an executable project.")
+app = typer.Typer(help="Build and run an executable project or run raptor tasks.")
 
 
 # Factory function for creating commands for each executable project
@@ -39,3 +42,15 @@ def create_build_command(prj_name: str):
 
 for prj_name in CONFIG.workspace.executable_projects.keys():
     app.command(name=prj_name, help=f"Run {prj_name}.")(create_build_command(prj_name))
+
+
+# Factory function for creating task-run commands
+def create_taskrun_command(task: Task):
+    def command():
+        run([task.command] + task.args, cwd=repo_root())
+
+    return command
+
+
+for task_name, task in CONFIG.tasks.items():
+    app.command(name=task_name, help=task.description)(create_taskrun_command(task))

@@ -68,6 +68,9 @@ def _debug_print_config():
     trace("raptor.clean")
     trace(f"    targets: {CONFIG.clean.targets}")
 
+    trace("raptor.tasks")
+    trace(f"    tasks: {CONFIG.tasks}")
+
 
 # Disabled by default
-# _debug_print_config()
+#_debug_print_config()

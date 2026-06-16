@@ -118,6 +118,12 @@ class CleanConfig(BaseModel):
     targets: dict[str, CleanTarget] = Field(default_factory=dict)
 
 
+class Task(BaseModel):
+    description: str
+    command: str
+    args: list[str] = Field(default_factory=list)
+
+
 class RaptorConfig(BaseModel):
     version: str
     paths: PathsConfig
@@ -126,6 +132,7 @@ class RaptorConfig(BaseModel):
     premake: PremakeConfig
     workspace: WorkspaceConfig
     clean: CleanConfig
+    tasks: dict[str, Task] = Field(default_factory=dict)
 
 
 class RaptorConfigFile(BaseModel):
