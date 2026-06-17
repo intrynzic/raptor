@@ -7,8 +7,8 @@ from raptor.config.loader import CONFIG
 from raptor.config.structs import Task
 from raptor.core.git import repo_root
 from raptor.core.log import error
-from raptor.core.process import run
 from raptor.core.msbuild import build, build_and_run, run_project
+from raptor.core.process import run
 
 app = typer.Typer(help="Build and run an executable project or run raptor tasks.")
 
@@ -54,6 +54,7 @@ for prj_name in CONFIG.workspace.executable_projects.keys():
 #
 # Entries are populated during startup when tasks are loaded from the configuration file.
 _task_run_commands: dict[str, Callable[[], None]] = {}
+
 
 # Factory function for creating task-run commands
 def create_taskrun_command(task_name: str, task: Task):
