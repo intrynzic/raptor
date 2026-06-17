@@ -1,3 +1,4 @@
+from collections.abc import Callable
 from pathlib import Path
 
 import typer
@@ -44,14 +45,25 @@ for prj_name in CONFIG.workspace.executable_projects.keys():
     app.command(name=prj_name, help=f"Run {prj_name}.")(create_build_command(prj_name))
 
 
-# Factory function for creating task-run commands
-def create_taskrun_command(task: Task):
-    def command():
-        cwd = repo_root() if not task.cwd else repo_root() / task.cwd
-        run([task.command] + task.args, cwd=cwd)
+_task_run_commands: dict[str, Callable] = {}
 
+# Factory function for creating task-run commands
+def create_taskrun_command(task_name: str, task: Task):
+    def command():
+        # Execute dependent tasks
+        if task.depends_on:
+            for dependency in task.depends_on:
+                _task_run_commands[dependency]()
+                print()
+
+        # Execute this task's command
+        if task.command:
+            cwd = (repo_root() / task.cwd) if task.cwd else repo_root()
+            run([task.command] + task.args, cwd=cwd)
+
+    _task_run_commands[task_name] = command
     return command
 
 
 for task_name, task in CONFIG.tasks.items():
-    app.command(name=task_name, help=task.description)(create_taskrun_command(task))
+    app.command(name=task_name, help=task.description)(create_taskrun_command(task_name, task))

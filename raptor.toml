@@ -162,8 +162,15 @@ args = ["run", "--project", "Tools/BindingsGenerator"]
 description = "Build documentation."
 command = "zensical"
 args = ["build"]
-cwd  = "Docs"
+cwd = "Docs"
 
-[raptor.tasks.editor]
-description = "Run editor."
-command = "./bin/Dev/IntricateEditor.exe"
+[raptor.tasks.hello]
+description = "Say hello!"
+command = "echo"
+args = ["Hello There!"]
+
+[raptor.tasks.full-build]
+description = "Sample composite task."
+depends_on = ["generate", "docs", "hello"]
+command = "echo"
+args = ["Composite task executed successfully!"]
