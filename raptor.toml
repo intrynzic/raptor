@@ -174,3 +174,7 @@ description = "Sample composite task."
 depends_on = ["generate", "docs", "hello"]
 command = "echo"
 args = ["Composite task executed successfully!"]
+
+[raptor.tasks.super-build]
+description = "A composite task that depends on another composite task."
+depends_on = ["full-build"]
