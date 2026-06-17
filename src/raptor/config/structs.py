@@ -5,7 +5,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, model_validator
 
 from raptor.config.defines import CONFIG_FILE_NAME
-from raptor.core.log import critical
+from raptor.core.log import critical, warn
 
 
 class PathsConfig(BaseModel):
@@ -119,7 +119,7 @@ class CleanConfig(BaseModel):
 
 
 class Task(BaseModel):
-    description: str
+    description: Optional[str] = None
     command: Optional[str] = None
     args: list[str] = Field(default_factory=list)
     cwd: Optional[str] = None
@@ -138,6 +138,16 @@ class RaptorConfig(BaseModel):
 
     @model_validator(mode="after")
     def validate_tasks(self):
+        # Validate task structure
+        # A task is empty if both the 'command' and 'depends_on' fields are empty
+        for task_name, task in self.tasks.items():
+            if not task.description:
+                warn(f"Task '{task_name}' does not have a description.")
+
+            if not task.command and not task.depends_on:
+                critical(f"Task '{task_name}' is empty. A task must define either a command or at least one dependency.")
+                return self
+
         # Validate dependencies exist
         task_names = set(self.tasks)
         for task_name, task in self.tasks.items():
