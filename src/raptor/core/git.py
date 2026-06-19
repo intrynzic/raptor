@@ -3,17 +3,17 @@ from pathlib import Path
 
 from raptor.core.process import run
 
-import os # Review(Adam): Should the whole os module be imported, or just the functions that are used? (os.path and os.getcwd)
+import os
 from os import path as os_path
 
 @cache
 def repo_root() -> Path:
-    target = "raptor.toml" # This indicates the root of the repository
-    current = os_path.abspath(os.getcwd()) # Get the absolute path of the current working directory
+    target = "raptor.toml" # The root of the repository
+    current = os_path.abspath(os.getcwd()) # The absolute path of the current working directory
 
     while True:
-        if os_path.isfile(os_path.join(current, "raptor.toml")): # Check if the target file exists in the current path
-            return Path(current) # Return the current path as a Path object
+        if os_path.isfile(os_path.join(current, "raptor.toml")): # Check whether target file exists in the current path
+            return Path(current)
         
         parent = os_path.dirname(current) # Get the parent directory of the current path
 
