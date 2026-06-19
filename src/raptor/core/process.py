@@ -16,9 +16,9 @@ def run(cmd: Iterable[StrOrPath], cwd: StrOrPath | None = None, capture: bool = 
         command(f"{' '.join(cmd)}")
 
     if capture:
-        result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
+        result = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, shell=True)
     else:
-        result = subprocess.run(cmd, cwd=cwd)
+        result = subprocess.run(cmd, cwd=cwd, shell=True)
 
     if result.returncode != 0:
         error(f"Command failed with code {result.returncode}!")
