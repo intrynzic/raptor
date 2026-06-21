@@ -1,5 +1,12 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.25)
 project(raptor)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# PyBind11
+set(PYBIND11_FINDPYTHON ON)
+find_package(pybind11 CONFIG REQUIRED)
 
 # Raptor native
 add_subdirectory(native)
@@ -32,4 +39,9 @@ install(
     DESTINATION "."
     PATTERN "__pycache__" EXCLUDE
     PATTERN "*.pyc" EXCLUDE
+)
+
+# Install raptor_native
+install(TARGETS raptor_native
+    LIBRARY DESTINATION raptor
 )
