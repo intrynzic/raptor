@@ -20,6 +20,7 @@ authors = [
 requires-python = ">=3.13"
 dependencies = [
     "packaging>=25.0",
+    "pybind11>=3.0.4",
     "pydantic>=2.12.5",
     "requests>=2.32.5",
     "typer>=0.21.1",
