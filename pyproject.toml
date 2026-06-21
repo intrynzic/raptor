@@ -3,7 +3,7 @@ requires = ["scikit_build_core"]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
-wheel.packages = ["raptor"]
+wheel.packages = ["python/raptor"]
 wheel.py-api = "cp313"
 
 [project]

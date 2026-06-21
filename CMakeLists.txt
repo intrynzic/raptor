@@ -25,7 +25,7 @@ install(
 
 # Install Raptor's Python source
 install(
-    DIRECTORY "${CMAKE_SOURCE_DIR}/src/raptor"
+    DIRECTORY "${CMAKE_SOURCE_DIR}/python/raptor"
     DESTINATION "."
     PATTERN "__pycache__" EXCLUDE
     PATTERN "*.pyc" EXCLUDE
