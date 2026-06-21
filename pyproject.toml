@@ -37,6 +37,7 @@ Issues = "https://github.com/intrynzic/raptor/issues"
 
 [dependency-groups]
 dev = [
+    "pybind11-stubgen>=2.5.5",
     "ruff>=0.15.4",
 ]
 
