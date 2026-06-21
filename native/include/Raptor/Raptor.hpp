@@ -1,5 +1,5 @@
 class Raptor
 {
 public:
-    void HelloWorld();
+    static void HelloWorld();
 };
