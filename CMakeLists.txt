@@ -100,7 +100,7 @@ install(
     PATTERN "*.pyc" EXCLUDE
 )
 
-# Install raptor_native
-install(TARGETS raptor_native
+# Install Raptor native
+install(TARGETS native
     LIBRARY DESTINATION raptor
 )

@@ -3,7 +3,7 @@
 namespace py = pybind11;
 
 
-PYBIND11_MODULE(raptor_native, m)
+PYBIND11_MODULE(native, m)
 {
     m.doc() = "Raptor native extension";
     m.def("hello_world", Raptor::HelloWorld);
