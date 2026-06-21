@@ -7,7 +7,7 @@ import typer
 
 from raptor.config.loader import CONFIG
 from raptor.config.structs import CleanTarget
-from raptor.core.fs import temp_dir, repo_root
+from raptor.core.fs import repo_root, temp_dir
 from raptor.core.log import error, info, trace, warn
 
 app = typer.Typer(help="Clean the workspace's configured clean targets.")

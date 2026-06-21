@@ -1,23 +1,7 @@
-import os
 from functools import cache
-from os import path 
 from pathlib import Path
+
 from raptor.core.fs import repo_root
-
-
-# @cache
-# def repo_root() -> Path:
-#     target = "raptor.toml"  # The root of the repository
-#     current = path.abspath(os.getcwd())  # The absolute path of the current working directory
-
-#     while True:
-#         if path.isfile(path.join(current, "raptor.toml")):  # Check whether target file exists in the current path
-#             return Path(current)
-#         parent = path.dirname(current)  # Get the parent directory of the current path
-
-#         if parent == current:  # The root of the filesystem reached without finding target.
-#             raise FileNotFoundError(f"Could not find {target} in any parent directory of {os.getcwd()}")
-#         current = parent  # Move up the parent directory and continue searching.
 
 
 @cache

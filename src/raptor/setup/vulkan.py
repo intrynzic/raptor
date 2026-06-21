@@ -7,7 +7,7 @@ from packaging.version import parse as parse_ver
 
 from raptor.config.loader import CONFIG
 from raptor.core.environ import get_system_env_var
-from raptor.core.fs import temp_dir, repo_root
+from raptor.core.fs import repo_root, temp_dir
 from raptor.core.log import critical, error, info, log_validation_result, trace, warn
 from raptor.core.net import download_file
 from raptor.core.process import run, run_and_wait

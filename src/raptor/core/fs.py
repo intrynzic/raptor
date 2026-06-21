@@ -2,8 +2,8 @@ import os
 import platform
 from functools import cache
 from importlib.resources import files
-from pathlib import Path
 from os import path
+from pathlib import Path
 
 from raptor.config.loader import CONFIG
 from raptor.core.log import critical
@@ -12,17 +12,18 @@ from raptor.core.process import run
 
 @cache
 def repo_root() -> Path:
-    target = "raptor.toml" 
-    current = path.abspath(os.getcwd()) 
+    target = "raptor.toml"
+    current = path.abspath(os.getcwd())
 
     while True:
-        if path.isfile(path.join(current, "raptor.toml")):  
+        if path.isfile(path.join(current, "raptor.toml")):
             return Path(current)
-        parent = path.dirname(current)  
+        parent = path.dirname(current)
 
-        if parent == current:  
-            raise FileNotFoundError(f"Could not find {target} in any parent directory of {os.getcwd()}")
-        current = parent  
+        if parent == current:
+            critical(f"Could not find {target} in any parent directory of {os.getcwd()}!")
+        current = parent
+
 
 @cache
 def vswhere_path() -> Path:
