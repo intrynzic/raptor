@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
 project(raptor)
 
+# Raptor native
+add_subdirectory(native)
+
 if(WIN32)
     set(PREMAKE_BIN "binaries/premake5.exe")
     set(PREMAKE_DEST "premake5.exe")
