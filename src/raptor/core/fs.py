@@ -5,7 +5,7 @@ from importlib.resources import files
 from os import path
 from pathlib import Path
 
-from raptor.config.loader import CONFIG
+# from raptor.config.loader import CONFIG
 from raptor.core.log import critical
 from raptor.core.process import run
 
@@ -61,6 +61,7 @@ def temp_dir() -> Path:
 
 @cache
 def docs_dir() -> Path:
+    from raptor.config.loader import CONFIG # Lazy import to avoid circular dependency with git.py
     _DIR = repo_root() / ("docs" if CONFIG.paths.docs_dir is None else CONFIG.paths.docs_dir)
     if not _DIR.exists():
         os.makedirs(_DIR)
@@ -70,6 +71,7 @@ def docs_dir() -> Path:
 
 @cache
 def tools_dir() -> Path:
+    from raptor.config.loader import CONFIG # Lazy import to avoid circular dependency with git.py
     _DIR = repo_root() / ("Tools" if CONFIG.paths.tools_dir is None else CONFIG.paths.tools_dir)
     if not _DIR.exists():
         os.makedirs(_DIR)
