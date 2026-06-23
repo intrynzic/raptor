@@ -2,8 +2,7 @@ from pathlib import Path
 from typing import Literal
 
 from raptor.config.loader import CONFIG
-from raptor.core.fs import msbuild_path
-from raptor.core.git import repo_root
+from raptor.core.fs import msbuild_path, repo_root
 from raptor.core.log import critical
 from raptor.core.process import run
 

@@ -1,12 +1,7 @@
 from functools import cache
 from pathlib import Path
 
-from raptor.core.process import run
-
-
-@cache
-def repo_root() -> Path:
-    return Path(run(["git", "rev-parse", "--show-toplevel"], capture=True, quiet=True))
+from raptor.core.fs import repo_root
 
 
 @cache

@@ -3,8 +3,7 @@ import webbrowser
 
 import typer
 
-from raptor.core.fs import docs_dir, doxygen_dir
-from raptor.core.git import repo_root
+from raptor.core.fs import docs_dir, doxygen_dir, repo_root
 from raptor.core.log import critical, info
 from raptor.core.process import run
 
