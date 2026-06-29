@@ -7,9 +7,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Find the right Python environment
 #
 # Priority:
-#   1. Already set by scikit-build-core (temp build env) — leave it alone
-#   2. Project .venv exists — use it directly, no subprocess needed
-#   3. Ask uv — works when .venv doesn't exist yet but uv is on PATH
+#   1. Already set by scikit-build-core (temp build env) - leave it alone
+#   2. Project .venv exists - use it directly, no subprocess needed
+#   3. Ask uv - works when .venv doesn't exist yet but uv is on PATH
 #   4. Fall back to whatever CMake finds on PATH
 if(NOT DEFINED Python3_EXECUTABLE)
     # Check for .venv in the project root first
@@ -69,7 +69,7 @@ find_package(pybind11 CONFIG REQUIRED)
 # Subdirectories
 add_subdirectory(native)
 
-# TODO: Remove Premake binary selection
+# Premake binary selection
 if(WIN32)
     set(PREMAKE_BIN "binaries/premake5.exe")
     set(PREMAKE_DEST "premake5.exe")

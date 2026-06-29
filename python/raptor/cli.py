@@ -17,13 +17,6 @@ def print_version():
 
 @app.callback(invoke_without_command=True)
 def main(ctx: typer.Context, ver: bool = typer.Option(None, "--version", help="Show the version and exit.", is_eager=True)):
-    # For testing purposes. Remove when done!
-    import raptor.native as native
-    native.hello_world()
-
-    #import raptor.native
-    #raptor.native.hello_world()
-
     if ver:
         print_version()
         raise typer.Exit()

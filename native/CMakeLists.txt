@@ -15,7 +15,7 @@ target_compile_features(RaptorCore
 
 # Raptor Python bindings
 pybind11_add_module(native
-    bindings/module.cpp
+    bindings/Module.cpp
 )
 
 target_link_libraries(native
