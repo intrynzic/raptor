@@ -5,8 +5,7 @@ from pathlib import Path
 import typer
 
 from raptor.config.loader import CONFIG
-from raptor.core.fs import premake_path
-from raptor.core.git import repo_root
+from raptor.core.fs import premake_path, repo_root
 from raptor.core.log import info, trace
 from raptor.core.process import run
 
