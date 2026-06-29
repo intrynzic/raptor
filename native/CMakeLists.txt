@@ -3,6 +3,11 @@ add_library(RaptorCore STATIC
     src/Raptor.cpp
 )
 
+# Force RaptorCore to build with -fPIC on Linux
+if(LINUX)
+    set_property(TARGET RaptorCore PROPERTY POSITION_INDEPENDENT_CODE ON)
+endif()
+
 target_include_directories(RaptorCore
     PUBLIC
         include
