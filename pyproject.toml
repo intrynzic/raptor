@@ -44,6 +44,7 @@ dev = [
 [tool.ruff]
 line-length = 140
 target-version = "py312"
+exclude = ["*.pyi"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I"]
