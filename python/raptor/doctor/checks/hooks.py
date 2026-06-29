@@ -1,7 +1,6 @@
 import raptor.hooks.post_checkout as hook_pc
 import raptor.hooks.post_merge as hook_pm
 import raptor.hooks.post_rewrite as hook_pr
-
 from raptor.core.validation import ValidationResult
 from raptor.doctor.checks.check import Check
 

@@ -1,9 +1,12 @@
 [build-system]
-requires = ["scikit_build_core"]
+requires = [
+    "scikit_build_core",
+    "pybind11"
+]
 build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
-wheel.packages = ["raptor"]
+wheel.packages = ["python/raptor"]
 wheel.py-api = "cp313"
 
 [project]
@@ -17,6 +20,7 @@ authors = [
 requires-python = ">=3.13"
 dependencies = [
     "packaging>=25.0",
+    "pybind11>=3.0.4",
     "pydantic>=2.12.5",
     "requests>=2.32.5",
     "typer>=0.21.1",
@@ -33,12 +37,14 @@ Issues = "https://github.com/intrynzic/raptor/issues"
 
 [dependency-groups]
 dev = [
+    "pybind11-stubgen>=2.5.5",
     "ruff>=0.15.4",
 ]
 
 [tool.ruff]
 line-length = 140
 target-version = "py312"
+exclude = ["*.pyi"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I"]
