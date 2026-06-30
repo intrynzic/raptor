@@ -40,7 +40,6 @@ def _debug_print_config():
 
     trace("raptor.paths")
     trace(f"    docs_dir: {CONFIG.paths.docs_dir}")
-    trace(f"    tools_dir: {CONFIG.paths.tools_dir}")
 
     trace("raptor.setup")
     trace(f"    headless: {CONFIG.setup.headless}")
