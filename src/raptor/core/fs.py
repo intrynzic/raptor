@@ -71,10 +71,8 @@ def docs_dir() -> Path:
 
 
 @cache
-def tools_dir() -> Path:
-    from raptor.config.loader import CONFIG  # Lazy import to avoid circular dependency with git.py
-
-    _DIR = repo_root() / ("Tools" if CONFIG.paths.tools_dir is None else CONFIG.paths.tools_dir)
+def bin_dir() -> Path:
+    _DIR = raptor_dir() / "bin"
     if not _DIR.exists():
         os.makedirs(_DIR)
 
@@ -83,7 +81,7 @@ def tools_dir() -> Path:
 
 @cache
 def doxygen_dir() -> Path:
-    return tools_dir() / "Doxygen"
+    return bin_dir() / "Doxygen"
 
 
 @cache

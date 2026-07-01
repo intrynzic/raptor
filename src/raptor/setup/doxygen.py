@@ -6,14 +6,14 @@ from packaging.version import Version
 from packaging.version import parse as parse_ver
 
 from raptor.config.loader import CONFIG
-from raptor.core.fs import temp_dir, tools_dir
+from raptor.core.fs import bin_dir, temp_dir
 from raptor.core.log import critical, error, info, log_validation_result, trace, warn
 from raptor.core.net import download_file
 from raptor.core.process import run
 from raptor.core.validation import Severity, ValidationResult
 
 _DOXYGEN_REQUIRED_VER: Version = Version(CONFIG.setup.get("doxygen").min_version)
-_DOXYGEN_DIR: Path = tools_dir() / "Doxygen"
+_DOXYGEN_DIR: Path = bin_dir() / "Doxygen"
 _DOXYGEN_PATH: Path = _DOXYGEN_DIR / "doxygen.exe"
 
 _DOXYGEN_ARCHIVE_NAME: str = f"doxygen-{_DOXYGEN_REQUIRED_VER}.windows.x64.bin.zip"
