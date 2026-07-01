@@ -6,7 +6,7 @@ from packaging.version import Version
 from packaging.version import parse as parse_ver
 
 from raptor.config.loader import CONFIG
-from raptor.core.fs import temp_dir, bin_dir
+from raptor.core.fs import bin_dir, temp_dir
 from raptor.core.log import critical, error, info, log_validation_result, trace, warn
 from raptor.core.net import download_file
 from raptor.core.process import run
