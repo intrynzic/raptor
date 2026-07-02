@@ -10,7 +10,6 @@ from raptor.core.log import critical, warn
 
 class PathsConfig(BaseModel):
     docs_dir: Optional[Path] = None
-    tools_dir: Optional[Path] = None
 
 
 class SetupTask(BaseModel):
