@@ -15,7 +15,7 @@ wheel.packages = ["python/raptor"]
 
 [project]
 name = "intrynzic-raptor"
-version = "0.0.12"
+version = "0.0.13"
 description = "The developer tooling suite for Intrynzic's projects, automating environment bootstrap, SDK setup, build orchestration and more."
 readme = "README.md"
 authors = [
