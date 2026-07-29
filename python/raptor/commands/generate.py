@@ -1,11 +1,8 @@
 import secrets
-import webbrowser
 
 import typer
 
-from raptor.core.fs import doxygen_dir, repo_root
 from raptor.core.log import critical, info
-from raptor.core.process import run
 
 app = typer.Typer(help="Generate various IntricateEngine-specific resources, documentation and identifiers.")
 
