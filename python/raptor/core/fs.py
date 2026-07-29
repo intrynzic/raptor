@@ -60,17 +60,6 @@ def temp_dir() -> Path:
 
 
 @cache
-def docs_dir() -> Path:
-    from raptor.config.loader import CONFIG  # Lazy import to avoid circular dependency with git.py
-
-    _DIR = repo_root() / ("docs" if CONFIG.paths.docs_dir is None else CONFIG.paths.docs_dir)
-    if not _DIR.exists():
-        os.makedirs(_DIR)
-
-    return _DIR
-
-
-@cache
 def bin_dir() -> Path:
     _DIR = raptor_dir() / "bin"
     if not _DIR.exists():

@@ -3,7 +3,7 @@ import webbrowser
 
 import typer
 
-from raptor.core.fs import docs_dir, doxygen_dir, repo_root
+from raptor.core.fs import doxygen_dir, repo_root
 from raptor.core.log import critical, info
 from raptor.core.process import run
 
@@ -42,24 +42,3 @@ def guid(
         generated.append(f"{_IE_BUILTIN_ASSET_GUID_PREFIX if builtin else ''}{secrets.token_hex(num_bytes)[:my_length]}")
 
     info(f"Generated GUIDs:\n{'\n'.join(generated)}")
-
-
-@app.command(help="Generate project documentation with Doxygen.")
-def docs(open_browser: bool = typer.Option(False, "--open", "-o", help="Open the generated documentation in the browser.")):
-    root = repo_root()
-    doxygen = doxygen_dir() / "doxygen.exe"
-
-    if not doxygen.exists():
-        critical('doxygen.exe could not be found!\n Please run "raptor setup doxygen" to install Doxygen.')
-        return
-
-    info("Running Doxygen...")
-    run([doxygen, "doxyfile"], cwd=root)
-
-    index_path = docs_dir() / "html" / "index.html"
-    if not (index_path):
-        critical("Doxygen generation failed!")
-        return
-
-    if open_browser:
-        webbrowser.open(f"file://{index_path}")
