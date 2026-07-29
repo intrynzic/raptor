@@ -11,7 +11,7 @@
 
 Modern C++ projects shouldn't require pages of setup docs, fragile scripts, or tribal knowledge just to get building.
 
-**Raptor makes the repository the source of truth.** It defines how a C++ (or other) repository is prepared, validated, generated, built, and maintained—ensuring every developer machine and CI runner follows the exact same workflow.
+**Raptor makes the repository the source of truth.** It defines how a C++ (or other) repository is prepared, validated, generated, built, and maintained - ensuring every developer machine and CI runner follows the exact same workflow.
 
 Instead of forcing developers to manually configure their machines, Raptor forces the machine to conform to the repository.
 
