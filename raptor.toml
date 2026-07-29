@@ -5,9 +5,6 @@
 [raptor]
 version = "1.2.1"
 
-[raptor.paths]
-docs_dir = "docs"
-
 [raptor.setup]
 headless = false
 

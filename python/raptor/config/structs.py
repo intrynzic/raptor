@@ -127,7 +127,6 @@ class Task(BaseModel):
 
 class RaptorConfig(BaseModel):
     version: str
-    paths: PathsConfig
     setup: SetupConfig
     doctor: DoctorConfig
     premake: PremakeConfig
