@@ -4,7 +4,7 @@
 
 ---
 
-[![Build](https://github.com/intrynzic/raptor/actions/workflows/build.yml/badge.svg)](https://github.com/intrynzic/raptor/actions/workflows/build.yml) [![PyPI version](https://img.shields.io/pypi/v/intrynzic-raptor.svg?logo=python&logoColor=white&label=PyPI)](https://pypi.org/project/intrynzic-raptor/)
+[![Build](https://github.com/intrynzic/raptor/actions/workflows/build.yml/badge.svg)](https://github.com/intrynzic/raptor/actions/workflows/build.yml) [![CI](https://github.com/intrynzic/raptor/actions/workflows/ci.yml/badge.svg)](https://github.com/intrynzic/raptor/actions/workflows/ci.yml) [![PyPI version](https://img.shields.io/pypi/v/intrynzic-raptor.svg?logo=python&logoColor=white&label=PyPI)](https://pypi.org/project/intrynzic-raptor/)
 
 ## Overview
 
