@@ -1,5 +1,6 @@
 from typing import Sequence
-from raptor.build.metabuild_backend import ToolRequirement, MetaBuildBackend
+
+from raptor.build.metabuild_backend import MetaBuildBackend, ToolRequirement
 
 
 class DefaultBackend(MetaBuildBackend):
@@ -10,10 +11,8 @@ class DefaultBackend(MetaBuildBackend):
     def tool_requirements(self) -> Sequence[ToolRequirement]:
         return super().tool_requirements
 
-
     def generate(self, args: list[str] | None):
         return super().generate(args)
-
 
     def detect(self) -> bool:
         return super().detect()

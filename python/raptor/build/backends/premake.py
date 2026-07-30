@@ -1,16 +1,12 @@
-from typing import Optional, Sequence
-
-import platform
 import os
 import time
-from functools import cache
-from importlib.resources import files
 from pathlib import Path
+from typing import Optional, Sequence
 
-from raptor.build.metabuild_backend import ToolRequirement, MetaBuildBackend
+from raptor.build.metabuild_backend import MetaBuildBackend, ToolRequirement
 from raptor.config.loader import CONFIG
 from raptor.core.fs import repo_root
-from raptor.core.log import info, trace, critical
+from raptor.core.log import info, trace
 from raptor.core.process import run
 
 
@@ -20,18 +16,10 @@ class Premake(MetaBuildBackend):
 
     @property
     def tool_requirements(self) -> Sequence[ToolRequirement]:
-        return [
-            ToolRequirement(
-                name="premake",
-                min_ver=CONFIG.metabuild.min_version,
-                auto_install=True
-            )
-        ]
-
+        return [ToolRequirement(name="premake", min_ver=CONFIG.metabuild.min_version, auto_install=True)]
 
     def generate(self, args: Optional[list[str]]):
         self._premake(args if args else [])
-
 
     def detect(self) -> bool:
         return super().detect()
@@ -41,7 +29,6 @@ class Premake(MetaBuildBackend):
         run([_premake_path()] + args, cwd=repo_root())
         if args[0].lower() == "vs2026":
             Premake._post_process_vs2026()
-
 
     # NOTE: The Visual Studio 2026 .slnx format is significantly stricter about platform
     # configuration consistency than previous Visual Studio releases.
@@ -96,13 +83,17 @@ class Premake(MetaBuildBackend):
 
 # TODO: This function must be FULLLY REWORKED
 # We will now no-longer be shipping premake with Raptor (it's dumb... Very)
-@cache
 def _premake_path() -> Path:
-    binary = "premake5.exe" if platform.system() == "Windows" else "premake5"
-    path = Path(str(files("raptor").joinpath(f"bin/{binary}")))
+    return Path()
 
-    if not path.exists():
-        critical(f'Premake5 binary not found at "{path}"!')
-        return Path()
 
-    return path
+# @cache
+# def _premake_path() -> Path:
+#     binary = "premake5.exe" if platform.system() == "Windows" else "premake5"
+#     path = Path(str(files("raptor").joinpath(f"bin/{binary}")))
+#
+#     if not path.exists():
+#         critical(f'Premake5 binary not found at "{path}"!')
+#         return Path()
+#
+#     return path

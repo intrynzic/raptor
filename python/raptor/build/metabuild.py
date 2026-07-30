@@ -1,12 +1,9 @@
 from __future__ import annotations
-from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from pathlib import Path
-from typing import Sequence, Optional
-from packaging.version import Version
 
-from raptor.build.metabuild_backend import MetaBuildBackend
+from typing import Optional
+
 from raptor.build.backends import default, premake
+from raptor.build.metabuild_backend import MetaBuildBackend
 from raptor.config.loader import CONFIG
 
 
@@ -21,4 +18,3 @@ def generate(args: Optional[list[str]]):
 
     # TODO: Should we do a detect here?
     generator.generate(args)
-

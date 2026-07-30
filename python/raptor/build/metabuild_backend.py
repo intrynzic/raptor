@@ -1,7 +1,8 @@
 from __future__ import annotations
+
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Sequence, Optional
+from typing import Optional, Sequence
 
 from raptor.core.log import warn
 
@@ -29,11 +30,9 @@ class MetaBuildBackend(ABC):
     def tool_requirements(self) -> Sequence["ToolRequirement"]:
         warn("The meta-build backend hasn't been configured for this project.")
 
-
     @abstractmethod
     def generate(self, args: Optional[list[str]]):
         warn("The meta-build backend hasn't been configured for this project.")
-
 
     @abstractmethod
     def detect(self) -> bool:
