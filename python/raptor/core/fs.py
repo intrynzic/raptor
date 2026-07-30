@@ -1,11 +1,8 @@
 import os
-import platform
 from functools import cache
-from importlib.resources import files
 from os import path
 from pathlib import Path
 
-# from raptor.config.loader import CONFIG
 from raptor.core.log import critical
 from raptor.core.process import run
 
@@ -71,15 +68,3 @@ def bin_dir() -> Path:
 @cache
 def doxygen_dir() -> Path:
     return bin_dir() / "Doxygen"
-
-
-@cache
-def premake_path() -> Path:
-    binary = "premake5.exe" if platform.system() == "Windows" else "premake5"
-    path = Path(str(files("raptor").joinpath(f"bin/{binary}")))
-
-    if not path.exists():
-        critical(f'Premake5 binary not found at "{path}"!')
-        return Path()
-
-    return path

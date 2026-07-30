@@ -2,7 +2,7 @@ from importlib.metadata import PackageNotFoundError, version
 
 import typer
 
-from raptor.commands import build, clean, doctor, generate, hook, premake, rebuild, run, setup
+from raptor.commands import build, clean, doctor, generate, hook, rebuild, run, setup
 from raptor.hooks.loader import load_hooks
 
 app = typer.Typer()
@@ -36,7 +36,6 @@ app.add_typer(clean.app, name="clean", no_args_is_help=True)
 app.add_typer(doctor.app, name="doctor", no_args_is_help=True)
 app.add_typer(generate.app, name="generate", no_args_is_help=True)
 app.add_typer(hook.app, name="hook", no_args_is_help=True)
-app.add_typer(premake.app, name="premake", no_args_is_help=True)
 app.add_typer(rebuild.app, name="rebuild", no_args_is_help=True)
 app.add_typer(run.app, name="run", no_args_is_help=True)
 app.add_typer(setup.app, name="setup", no_args_is_help=True)
