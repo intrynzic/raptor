@@ -34,7 +34,7 @@ def main(ctx: typer.Context, ver: bool = typer.Option(None, "--version", help="S
 app.add_typer(build.app, name="build", no_args_is_help=True)
 app.add_typer(clean.app, name="clean", no_args_is_help=True)
 app.add_typer(doctor.app, name="doctor", no_args_is_help=True)
-app.add_typer(generate.app, name="generate", no_args_is_help=True)
+app.add_typer(generate.app, name="generate")
 app.add_typer(hook.app, name="hook", no_args_is_help=True)
 app.add_typer(rebuild.app, name="rebuild", no_args_is_help=True)
 app.add_typer(run.app, name="run", no_args_is_help=True)
