@@ -50,6 +50,7 @@ name = "cpp23"
 
 [raptor.metabuild]
 generator = "premake"
+min_version = "5.0.0-beta8"
 args = ["vs2026"]
 
 # TODO: Support msvc, gcc, ninja, etc...

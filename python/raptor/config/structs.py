@@ -70,6 +70,7 @@ class DoctorConfig(BaseModel):
 
 class MetaBuildConfig(BaseModel):
     generator: str
+    min_version: str
     args: list[str] = Field(default_factory=list)
 
 

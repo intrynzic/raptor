@@ -51,6 +51,7 @@ def _debug_print_config():
 
     trace("raptor.metabuild")
     trace(f"    generator: {CONFIG.metabuild.generator}")
+    trace(f"    min_version: {CONFIG.metabuild.min_version}")
     trace(f"    args: {CONFIG.metabuild.args}")
 
     trace("raptor.workspace")
