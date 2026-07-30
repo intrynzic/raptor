@@ -9,6 +9,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+!python/raptor/build
 develop-eggs/
 dist/
 downloads/
