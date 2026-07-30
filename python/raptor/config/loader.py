@@ -50,8 +50,8 @@ def _debug_print_config():
         trace(f"    {check.name}")
 
     trace("raptor.metabuild")
-    trace(f"    backend: {CONFIG.premake.backend}")
-    trace(f"    args: {CONFIG.premake.args}")
+    trace(f"    backend: {CONFIG.metabuild.backend}")
+    trace(f"    args: {CONFIG.metabuild.args}")
 
     trace("raptor.workspace")
     trace(f"    dir: {CONFIG.workspace.dir}")
