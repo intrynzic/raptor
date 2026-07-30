@@ -69,7 +69,7 @@ class DoctorConfig(BaseModel):
 
 
 class MetaBuildConfig(BaseModel):
-    backend: str
+    generator: str
     args: list[str] = Field(default_factory=list)
 
 

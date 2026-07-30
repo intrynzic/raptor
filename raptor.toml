@@ -49,7 +49,7 @@ name = "windows"
 name = "cpp23"
 
 [raptor.metabuild]
-backend = "premake"
+generator = "premake"
 args = ["vs2026"]
 
 # TODO: Support msvc, gcc, ninja, etc...
