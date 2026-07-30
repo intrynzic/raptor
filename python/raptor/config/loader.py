@@ -38,9 +38,6 @@ def _debug_print_config():
     trace("raptor")
     trace(f"    version: {CONFIG.version}")
 
-    trace("raptor.paths")
-    trace(f"    docs_dir: {CONFIG.paths.docs_dir}")
-
     trace("raptor.setup")
     trace(f"    headless: {CONFIG.setup.headless}")
 

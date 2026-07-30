@@ -8,10 +8,6 @@ from raptor.config.defines import CONFIG_FILE_NAME
 from raptor.core.log import critical, warn
 
 
-class PathsConfig(BaseModel):
-    docs_dir: Optional[Path] = None
-
-
 class SetupTask(BaseModel):
     name: str
     min_version: str
@@ -127,7 +123,6 @@ class Task(BaseModel):
 
 class RaptorConfig(BaseModel):
     version: str
-    paths: PathsConfig
     setup: SetupConfig
     doctor: DoctorConfig
     premake: PremakeConfig
