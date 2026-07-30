@@ -68,13 +68,9 @@ class DoctorConfig(BaseModel):
         return {task.name: task for task in self.checks}
 
 
-class PremakeConfig(BaseModel):
-    default_action: str
-    supported_actions: list[str] = Field(default_factory=list)
-
-    def model_post_init(self, context):
-        if self.default_action not in self.supported_actions:
-            critical(f"{CONFIG_FILE_NAME}: 'default_action' must be in 'supported_actions'!")
+class MetaBuildConfig(BaseModel):
+    backend: str
+    args: list[str] = Field(default_factory=list)
 
 
 class ProjectConfig(BaseModel):
@@ -125,7 +121,7 @@ class RaptorConfig(BaseModel):
     version: str
     setup: SetupConfig
     doctor: DoctorConfig
-    premake: PremakeConfig
+    metabuild: MetaBuildConfig
     workspace: WorkspaceConfig
     clean: CleanConfig
     tasks: dict[str, Task] = Field(default_factory=dict)

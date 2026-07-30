@@ -49,9 +49,9 @@ def _debug_print_config():
     for check in CONFIG.doctor.checks:
         trace(f"    {check.name}")
 
-    trace("raptor.premake")
-    trace(f"    default_action: {CONFIG.premake.default_action}")
-    trace(f"    supported_actions: {CONFIG.premake.supported_actions}")
+    trace("raptor.metabuild")
+    trace(f"    backend: {CONFIG.premake.backend}")
+    trace(f"    args: {CONFIG.premake.args}")
 
     trace("raptor.workspace")
     trace(f"    dir: {CONFIG.workspace.dir}")

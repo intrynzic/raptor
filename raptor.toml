@@ -3,7 +3,7 @@
 #
 
 [raptor]
-version = "1.2.2"
+version = "1.3.0"
 
 [raptor.setup]
 headless = false
@@ -48,9 +48,12 @@ name = "windows"
 [[raptor.doctor.checks]]
 name = "cpp23"
 
-[raptor.premake]
-default_action = "vs2026"
-supported_actions = ["vs2026", "vs2022"]
+[raptor.metabuild]
+backend = "premake"
+args = ["vs2026"]
+
+# TODO: Support msvc, gcc, ninja, etc...
+# [raptor.build]
 
 [raptor.workspace]
 dir = "."
