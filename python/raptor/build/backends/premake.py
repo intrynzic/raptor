@@ -86,6 +86,16 @@ class Premake(MetaBuildBackend):
 def _premake_path() -> Path:
     return Path()
 
+# Notes:
+# The backend should not be responsible for downloading and installing premake.
+# This should be handled by the requirement/provisioning system.
+# But how the hell do we implement this system now...
+#
+# Requirements should first be searched for on PATH, then in the Raptor bin directory, and then be installed if not found,
+# and configured by the user to be auto-installed. But this system needs to be generic enough that it'll work for any tool
+# and can be nicely configured by the user without writing any code, scripts or custom backends, and without us having to write
+# specializations for every tool required (which is what we currently do).
+
 
 # @cache
 # def _premake_path() -> Path:
